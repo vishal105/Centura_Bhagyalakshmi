@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangeActivity">
+    tools:context="materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

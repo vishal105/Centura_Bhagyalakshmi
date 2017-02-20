@@ -9,7 +9,7 @@ import android.view.View;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 
-public class ChangeActivity extends AppCompatActivity {
+public class ChangePasswordActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
