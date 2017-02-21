@@ -1,5 +1,6 @@
 package materialtest.example.centura.centura_bhagyalakshmi.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
+import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
 
 public class DashBoardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,19 +84,25 @@ public class DashBoardActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
+
+            startActivity(new Intent(DashBoardActivity.this, DashBoardActivity.class));
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_myprofile) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_changepassword) {
 
-        } else if (id == R.id.nav_manage) {
+            startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
+            super.onBackPressed();
+            finish();
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_orders) {
+
+        } /*else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
