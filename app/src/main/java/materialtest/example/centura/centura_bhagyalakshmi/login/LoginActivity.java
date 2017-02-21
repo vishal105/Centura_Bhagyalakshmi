@@ -51,10 +51,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        username=et_username.getText().toString();
-        password=et_password.getText().toString();
+        username=et_username.getText().toString().trim();
+        password=et_password.getText().toString().trim();
         if(username.length()>=1) {
             if (password.length()>=1){
+                loginapi();
                 startActivity(new Intent(LoginActivity.this,DashBoardActivity.class));
 
 
@@ -66,6 +67,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(getApplicationContext(), "Please Enter Username", Toast.LENGTH_SHORT).show();
 
         }
+    }
+
+    private void loginapi() {
+
     }
 }
 
