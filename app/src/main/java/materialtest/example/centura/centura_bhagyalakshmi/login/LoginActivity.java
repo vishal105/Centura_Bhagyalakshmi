@@ -1,10 +1,8 @@
 package materialtest.example.centura.centura_bhagyalakshmi.login;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,25 +17,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
-import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
-import materialtest.example.centura.centura_bhagyalakshmi.model.login;
-
-import static materialtest.example.centura.centura_bhagyalakshmi.R.id.et_password;
-import static materialtest.example.centura.centura_bhagyalakshmi.R.id.et_username;
-import static materialtest.example.centura.centura_bhagyalakshmi.R.layout.activity_dash_board;
-import static materialtest.example.centura.centura_bhagyalakshmi.R.string.login;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button bt_login;
     EditText et_username, et_password;
-    login loginmodel;
     String URL ="http://192.168.0.144:81/api/BhagyaLakshmi/";
 
 
@@ -60,7 +49,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        loginmodel = new login(username,password);
         username=et_username.getText().toString().trim();
         password=et_password.getText().toString().trim();
         if(username.length()>=1) {
@@ -85,8 +73,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 , new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(LoginActivity.this,"Login Successful",Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(LoginActivity.this,response.toString(),Toast.LENGTH_LONG).show();
                 startActivity(new Intent(LoginActivity.this,DashBoardActivity.class));
+                (LoginActivity.this).finish();
 
             }
         }, new Response.ErrorListener() {
