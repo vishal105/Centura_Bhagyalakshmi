@@ -46,7 +46,8 @@
                         android:hint="@string/Username_hint"
                         android:textColor="@color/color_400"
                         android:paddingLeft="5dp"
-                        android:paddingRight="5dp"/>
+                        android:paddingRight="5dp"
+                        android:singleLine="true"/>
                 </android.support.design.widget.TextInputLayout>
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -55,13 +56,14 @@
 
                     <EditText
                         android:id="@+id/et_password"
-                        android:maxLength="8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password_hint"
                         android:textColor="@color/color_400"
                         android:paddingLeft="5dp"
-                        android:paddingRight="5dp"/>
+                        android:paddingRight="5dp"
+                        android:inputType="textPassword"
+                        android:singleLine="true"/>
                 </android.support.design.widget.TextInputLayout>
                 <Button
                     android:id="@+id/bt_Login"
