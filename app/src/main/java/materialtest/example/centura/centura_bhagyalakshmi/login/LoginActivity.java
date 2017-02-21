@@ -1,6 +1,5 @@
 package materialtest.example.centura.centura_bhagyalakshmi.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -27,7 +25,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardAct
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button bt_login;
     EditText et_username, et_password;
-    String URL ="http://192.168.0.144:81/api/BhagyaLakshmi/";
+    String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
 
 
     public String username, password;
@@ -49,44 +47,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        username=et_username.getText().toString().trim();
-        password=et_password.getText().toString().trim();
-        if(username.length()>=1) {
-            if (password.length()>=1){
+        username = et_username.getText().toString().trim();
+        password = et_password.getText().toString().trim();
+        if (username.length() >= 1) {
+            if (password.length() >= 1) {
                 loginapi();
 
 
-
-        }else {
+            } else {
                 Toast.makeText(getApplicationContext(), "Please Enter Password", Toast.LENGTH_SHORT).show();
 
             }
-        }else {
+        } else {
             Toast.makeText(getApplicationContext(), "Please Enter Username", Toast.LENGTH_SHORT).show();
 
         }
     }
 
     private void loginapi() {
-        String LOGIN_URL=URL+"Login/"+"?UserName=" + username + "&&Password=" + password;
-        JsonObjectRequest jsonObjectRequest =new JsonObjectRequest(Request.Method.GET, LOGIN_URL
+        String LOGIN_URL = URL + "Login/" + "?UserName=" + username + "&&Password=" + password;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, LOGIN_URL
                 , new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
-                Toast.makeText(LoginActivity.this,response.toString(),Toast.LENGTH_LONG).show();
-                startActivity(new Intent(LoginActivity.this,DashBoardActivity.class));
-                (LoginActivity.this).finish();
+                Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
 
             }
 
-    });
+        });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(3000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
