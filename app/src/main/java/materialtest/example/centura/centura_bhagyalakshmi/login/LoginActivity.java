@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
@@ -31,6 +32,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
-        startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
+        Toast.makeText(getApplicationContext(), "Welcome to Bhagyalakshmi Enterprises", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(LoginActivity.this, DashBoardActivity.class))
+        ;
+
     }
 }
