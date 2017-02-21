@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button login;
@@ -30,6 +31,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
-        startActivity(new Intent(LoginActivity.this,ChangePasswordActivity.class));
+        startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
     }
 }
