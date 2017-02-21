@@ -55,6 +55,7 @@
 
                     <EditText
                         android:id="@+id/et_password"
+                        android:maxLength="8"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password_hint"
@@ -63,7 +64,7 @@
                         android:paddingRight="5dp"/>
                 </android.support.design.widget.TextInputLayout>
                 <Button
-                    android:id="@+id/bt_login"
+                    android:id="@+id/bt_Login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/login"
