@@ -19,8 +19,13 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button bt_login;
@@ -59,8 +64,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void loginapi() {
-        String LOGIN_URL = URL + "Login/" + "?UserName=" + username + "&&Password=" + password;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, LOGIN_URL
+
+        ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
+        params.add(new KeyValuePair("UserName", username));
+        params.add(new KeyValuePair("Password", password));
+        //String LOGIN_URL = URL + "Login/" + "?UserName=" + username + "&&Password=" + password;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Login, params)
                 , new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

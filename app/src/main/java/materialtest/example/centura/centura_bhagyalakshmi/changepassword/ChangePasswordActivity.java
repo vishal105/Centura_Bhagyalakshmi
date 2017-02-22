@@ -1,5 +1,7 @@
 package materialtest.example.centura.centura_bhagyalakshmi.changepassword;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,28 +14,43 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
     EditText old_password_et, new_password_et, confirm_password_et;
     Button cancel_button, save_button;
 
+    static int mStatusCode = 0;
+
     public String oldpassword, newpassword, confirmpassword;
 
-    String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +68,18 @@ public class ChangePasswordActivity extends AppCompatActivity {
     }
 
     public void onClicks() {
-        oldpassword = old_password_et.getText().toString().trim();
-        newpassword = new_password_et.getText().toString().trim();
-        confirmpassword = confirm_password_et.getText().toString().trim();
+
 
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                oldpassword = old_password_et.getText().toString().trim();
+                newpassword = new_password_et.getText().toString().trim();
+                confirmpassword = confirm_password_et.getText().toString().trim();
 
                 if (newpassword.length() > 1) {
                     if (confirmpassword.length() > 1) {
-                        changepasswordApi();
+                        changepasswordApi(ChangePasswordActivity.this, old_password_et, new_password_et);
                     } else {
                         confirm_password_et.setError("Password Does not match");
                     }
@@ -80,27 +98,48 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     }
 
-    private void changepasswordApi() {
+    private void changepasswordApi(final Context context, EditText oldPassword, EditText newPassword) {
 
-        String CHANGE_PASSWORD_URL = URL + "changepassword/" + "?OldPassword" + oldpassword + "?NewPassword" + newpassword;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,CHANGE_PASSWORD_URL,
-                new Response.Listener<JSONObject>() {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
+        params.add(new KeyValuePair("OldPassword", oldPassword.getText().toString()));
+        params.add(new KeyValuePair("NewPassword", newPassword.getText().toString()));
+
+        StringRequest postrequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.ChangePassword, params),
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Toast.makeText(ChangePasswordActivity.this, response.toString(), Toast.LENGTH_LONG).show();
+                    public void onResponse(String response) {
+
+                        switch (mStatusCode) {
+                            case 200:
+                                Toast.makeText(context, "Password Updated", Toast.LENGTH_SHORT).show();
+                                ((Activity) context).finish();
+                                break;
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(ChangePasswordActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(ChangePasswordActivity.this,"Connection Error, Please check your internet connection",Toast.LENGTH_SHORT).show();
+
+                } else {
+                    if (error != null && error.networkResponse != null) {
+                        mStatusCode = error.networkResponse.statusCode;
+                        switch (mStatusCode) {
+                            case 400:
+                                Toast.makeText(context, "Invalid Token", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    } else Toast.makeText(context, "Server Down", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(3000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
-        RequestQueue requestQueue = Volley.newRequestQueue(ChangePasswordActivity.this);
-        requestQueue.add(jsonObjectRequest);
+        queue.add(postrequest);
+
+
     }
 
     @Override
