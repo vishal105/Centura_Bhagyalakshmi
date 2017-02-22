@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.order.OrderActivity;
 
 public class DashBoardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -90,6 +91,8 @@ public class DashBoardActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_orders) {
+
+            startActivity(new Intent(DashBoardActivity.this,OrderActivity.class));
 
         } /*else if (id == R.id.nav_share) {
 
