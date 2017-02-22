@@ -87,7 +87,7 @@ public class DashBoardActivity extends AppCompatActivity
 
             startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
             super.onBackPressed();
-            finish();
+
 
         } else if (id == R.id.nav_orders) {
 

@@ -13,7 +13,8 @@
             android:name=".changepassword.ChangePasswordActivity"
             android:label="@string/title_activity_change"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
         <activity
             android:name=".login.LoginActivity"
             android:label="@string/title_activity_login"
@@ -28,7 +29,9 @@
         <activity
             android:name=".dashboard.DashBoardActivity"
             android:label="@string/title_activity_dash_board"
-            android:theme="@style/AppTheme.NoActionBar"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"
