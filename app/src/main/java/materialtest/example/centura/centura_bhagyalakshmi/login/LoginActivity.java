@@ -40,8 +40,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         et_password = (EditText) findViewById(R.id.et_password);
         bt_login = (Button) findViewById(R.id.bt_Login);
         bt_login.setOnClickListener(LoginActivity.this);
-
-
     }
 
 
@@ -52,15 +50,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (username.length() >= 1) {
             if (password.length() >= 1) {
                 loginapi();
-
-
             } else {
-                Toast.makeText(getApplicationContext(), "Please Enter Password", Toast.LENGTH_SHORT).show();
-
+                et_password.setError("Please enter Password");
             }
         } else {
-            Toast.makeText(getApplicationContext(), "Please Enter Username", Toast.LENGTH_SHORT).show();
-
+            et_username.setError("Please enter Username");
         }
     }
 
@@ -70,24 +64,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 , new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
                 Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
                 startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-
             }
 
         });
         jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(3000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
         requestQueue.add(jsonObjectRequest);
 
