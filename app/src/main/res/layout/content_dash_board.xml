@@ -135,6 +135,7 @@
                                     android:padding="@dimen/dimen_2dp">
 
                                     <TextView
+                                        android:id="@+id/textView2"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:text="150"
@@ -203,6 +204,7 @@
 
                                 </LinearLayout>
                             </LinearLayout>
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -214,6 +216,48 @@
                         </LinearLayout>
                     </LinearLayout>
 
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/statictics"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:padding="@dimen/activity_horizontal_margin">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:padding="@dimen/dimen_4dp"
+                            android:text="@string/dashboard_statistics"
+                            android:textColor="@color/color_400"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/view_1dp"
+                            android:layout_marginBottom="@dimen/dimen_2dp"
+                            android:layout_marginTop="@dimen/dimen_2dp"
+                            android:background="@color/color_400" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:src="@drawable/chart" />
+
+                    </LinearLayout>
 
                 </android.support.v7.widget.CardView>
 
