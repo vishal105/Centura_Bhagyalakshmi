@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="materialtest.example.centura.centura_bhagyalakshmi.order.OrderActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:titleTextColor="@color/white"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/round_shape"
+                android:gravity="center">
+
+
+                <EditText
+                    android:id="@+id/order_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="6dp"
+                    android:layout_toLeftOf="@+id/search_icon"
+                    android:background="@color/white"
+                    android:hint="Search Order"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/colorPrimary"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/search_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="7dp"
+                    android:src="@drawable/ic_search" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:padding="10dp"
+                android:text="Order Id" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="131dp"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:padding="10dp"
+                android:text="Name" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:padding="10dp"
+                android:text="Order Status" />
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"
+            android:padding="6dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+</android.support.design.widget.CoordinatorLayout>
