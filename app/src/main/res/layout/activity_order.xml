@@ -54,7 +54,6 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:padding="7dp"
                     android:src="@drawable/ic_search" />
             </RelativeLayout>
 
@@ -104,15 +103,14 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
             android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
             android:padding="6dp">
 
         </android.support.v7.widget.RecyclerView>
 
 
     </LinearLayout>
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

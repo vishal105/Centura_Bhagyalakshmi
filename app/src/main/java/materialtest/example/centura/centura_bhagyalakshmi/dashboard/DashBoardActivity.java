@@ -2,9 +2,6 @@ package materialtest.example.centura.centura_bhagyalakshmi.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -87,7 +84,8 @@ public class DashBoardActivity extends AppCompatActivity
         } else if (id == R.id.nav_changepassword) {
 
             startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
-            super.onBackPressed();
+
+
 
 
         } else if (id == R.id.nav_orders) {

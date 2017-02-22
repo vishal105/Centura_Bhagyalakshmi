@@ -10,16 +10,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
@@ -30,6 +34,8 @@ import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button bt_login;
     EditText et_username, et_password;
+
+    static int mStatusCode = 0;
     String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
 
 
@@ -69,27 +75,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         params.add(new KeyValuePair("UserName", username));
         params.add(new KeyValuePair("Password", password));
         //String LOGIN_URL = URL + "Login/" + "?UserName=" + username + "&&Password=" + password;
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Login, params)
-                , new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Toast.makeText(LoginActivity.this, response.toString(), Toast.LENGTH_LONG).show();
-                startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
-            }
-        }, new Response.ErrorListener() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Login, params),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
+                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+
+                }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-            }
 
+            }
         });
-        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(3000,
+        stringRequest.setRetryPolicy(new
+
+                DefaultRetryPolicy(3000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+
+        );
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(stringRequest);
+    }
+
+
+
 
     }
-}
+
 
 

@@ -2,7 +2,6 @@ package materialtest.example.centura.centura_bhagyalakshmi.changepassword;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,31 +13,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
-import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
-import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
 
 public class ChangePasswordActivity extends AppCompatActivity {
@@ -49,9 +37,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
     static int mStatusCode = 0;
 
     public String oldpassword, newpassword, confirmpassword;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +50,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         cancel_button = (Button) findViewById(R.id.cancel_button);
         save_button = (Button) findViewById(R.id.save_button);
         onClicks();
+
     }
 
     public void onClicks() {
@@ -77,14 +63,23 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 newpassword = new_password_et.getText().toString().trim();
                 confirmpassword = confirm_password_et.getText().toString().trim();
 
-                if (newpassword.length() > 1) {
-                    if (confirmpassword.length() > 1) {
-                        changepasswordApi(ChangePasswordActivity.this, old_password_et, new_password_et);
+                if (oldpassword.length() >= 1) {
+                    if (newpassword.length() >= 1) {
+                        if (confirmpassword.length() >= 1) {
+                            if (newpassword.matches(confirmpassword)) {
+                                changepasswordApi(ChangePasswordActivity.this, old_password_et, new_password_et);
+                            } else {
+                                Toast.makeText(ChangePasswordActivity.this, "Password Didn't Match", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            confirm_password_et.setError("This field required");
+                        }
+
                     } else {
-                        confirm_password_et.setError("Password Does not match");
+                        new_password_et.setError("This field required");
                     }
                 } else {
-                    new_password_et.setError("This field required");
+                    old_password_et.setError("This field required");
                 }
             }
         });
@@ -122,7 +117,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
 
-                    Toast.makeText(ChangePasswordActivity.this,"Connection Error, Please check your internet connection",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePasswordActivity.this, "Connection Error, Please check your internet connection", Toast.LENGTH_SHORT).show();
 
                 } else {
                     if (error != null && error.networkResponse != null) {
@@ -159,6 +154,4 @@ public class ChangePasswordActivity extends AppCompatActivity {
     }
 
 
-
 }
-
