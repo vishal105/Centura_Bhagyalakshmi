@@ -16,7 +16,6 @@ import android.view.MenuItem;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
-import materialtest.example.centura.centura_bhagyalakshmi.order.OrderActivity;
 
 public class DashBoardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,14 +27,7 @@ public class DashBoardActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -94,13 +86,10 @@ public class DashBoardActivity extends AppCompatActivity
         } else if (id == R.id.nav_changepassword) {
 
             startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
-           // super.onBackPressed();
-            //finish();
+            super.onBackPressed();
+
 
         } else if (id == R.id.nav_orders) {
-            startActivity(new Intent(DashBoardActivity.this, OrderActivity.class));
-           // super.onBackPressed();
-            finish();
 
         } /*else if (id == R.id.nav_share) {
 
