@@ -1,5 +1,6 @@
 package materialtest.example.centura.centura_bhagyalakshmi.dashboard;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.order.OrderActivity;
 public class DashBoardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,8 @@ public class DashBoardActivity extends AppCompatActivity
             startActivity(new Intent(DashBoardActivity.this,OrderActivity.class));
 
         } else if (id == R.id.nav_logout) {
+            SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.MyPref, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.commit();
             Intent i =new Intent(DashBoardActivity.this, LoginActivity.class);
@@ -105,7 +108,6 @@ public class DashBoardActivity extends AppCompatActivity
             startActivity(i);
 
             startActivity(new Intent(DashBoardActivity.this, LoginActivity.class));
-
 
         } /*else if (id == R.id.nav_send) {
 
