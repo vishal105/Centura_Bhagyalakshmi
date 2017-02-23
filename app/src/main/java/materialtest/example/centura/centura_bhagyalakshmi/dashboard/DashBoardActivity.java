@@ -90,9 +90,6 @@ public class DashBoardActivity extends AppCompatActivity
 
             startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
 
-
-
-
         } else if (id == R.id.nav_orders) {
 
             startActivity(new Intent(DashBoardActivity.this,OrderActivity.class));
@@ -106,13 +103,8 @@ public class DashBoardActivity extends AppCompatActivity
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
-
-            startActivity(new Intent(DashBoardActivity.this, LoginActivity.class));
-
-        } /*else if (id == R.id.nav_send) {
-
-        }*/
-
+            finish();
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

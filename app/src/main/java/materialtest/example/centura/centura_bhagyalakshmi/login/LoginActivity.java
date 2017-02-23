@@ -98,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             editor.putString(Sp_Status, "LoggedIn");
                             editor.commit();
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -44,7 +44,8 @@
         <activity
             android:name=".changepassword.ChangePasswordActivity"
             android:label="@string/title_activity_change_password1"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>
