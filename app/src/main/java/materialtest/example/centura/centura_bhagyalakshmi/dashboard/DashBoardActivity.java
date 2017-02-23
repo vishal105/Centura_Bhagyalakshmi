@@ -1,6 +1,7 @@
 package materialtest.example.centura.centura_bhagyalakshmi.dashboard;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,10 +14,13 @@ import android.view.MenuItem;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.order.OrderActivity;
 
 public class DashBoardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +96,18 @@ public class DashBoardActivity extends AppCompatActivity
 
             startActivity(new Intent(DashBoardActivity.this,OrderActivity.class));
 
-        } /*else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_logout) {
+            editor.clear();
+            editor.commit();
+            Intent i =new Intent(DashBoardActivity.this, LoginActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
 
-        } else if (id == R.id.nav_send) {
+            startActivity(new Intent(DashBoardActivity.this, LoginActivity.class));
+
+
+        } /*else if (id == R.id.nav_send) {
 
         }*/
 

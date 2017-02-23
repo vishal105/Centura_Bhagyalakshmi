@@ -18,17 +18,18 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
@@ -37,14 +38,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button bt_login;
     EditText et_username, et_password;
 
+    Gson gson;
     static int mStatusCode = 0;
     String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
+    public static final String Sp_Status = "Status";
+    public static final String MyPref = "MyPref";
 
 
     public String username, password;
+    CurrentUser currentusermodel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,6 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         et_password = (EditText) findViewById(R.id.et_password);
         bt_login = (Button) findViewById(R.id.bt_Login);
         bt_login.setOnClickListener(LoginActivity.this);
+        currentusermodel = new CurrentUser();
     }
 
 
@@ -81,16 +88,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        SharedPreferences sharedPreferences = getSharedPreferences("Token", Context.MODE_PRIVATE);
-                        startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
-                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        SharedPreferences sharedPreferences = getSharedPreferences(MyPref, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        gson = new Gson();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            currentusermodel = gson.fromJson(jsonObject.toString(), CurrentUser.class);
+                            startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
+                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                            editor.putString(Sp_Status, "LoggedIn");
+                            editor.commit();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-
-                }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    if (error != null && error.networkResponse != null) {
+                        mStatusCode = error.networkResponse.statusCode;
+                        switch (mStatusCode) {
+                            case 400:
+                                et_username.setError("Username or Password Invalid");
+                                break;
+                            case 401:
+                                et_password.setError("Password Invalid");
+                                break;
+                        }
+                    } else
+                        Toast.makeText(LoginActivity.this, "Server Down", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         stringRequest.setRetryPolicy(new
@@ -105,9 +134,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
-
-    }
+}
 
 
 
