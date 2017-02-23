@@ -16,11 +16,10 @@ import android.view.MenuItem;
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
-import materialtest.example.centura.centura_bhagyalakshmi.order.OrderActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.order.controller.OrderActivity;
 
 public class DashBoardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
 
 
     @Override
@@ -29,7 +28,6 @@ public class DashBoardActivity extends AppCompatActivity
         setContentView(R.layout.activity_dash_board);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -87,24 +85,25 @@ public class DashBoardActivity extends AppCompatActivity
         } else if (id == R.id.nav_myprofile) {
 
         } else if (id == R.id.nav_changepassword) {
-
             startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
-
+            finish();
         } else if (id == R.id.nav_orders) {
-
-            startActivity(new Intent(DashBoardActivity.this,OrderActivity.class));
-
+            startActivity(new Intent(DashBoardActivity.this, OrderActivity.class));
+            finish();
         } else if (id == R.id.nav_logout) {
             SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.MyPref, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.commit();
-            Intent i =new Intent(DashBoardActivity.this, LoginActivity.class);
+            Intent i = new Intent(DashBoardActivity.this, LoginActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
             finish();
-        }
+        } /*else if (id == R.id.nav_send) {
+
+        }*/
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

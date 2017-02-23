@@ -1,4 +1,4 @@
-package materialtest.example.centura.centura_bhagyalakshmi.order;
+package materialtest.example.centura.centura_bhagyalakshmi.order.controller;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

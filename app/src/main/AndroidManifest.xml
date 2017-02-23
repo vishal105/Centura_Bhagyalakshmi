@@ -30,7 +30,7 @@
             android:label="@string/title_activity_dash_board"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".order.OrderActivity"
+            android:name=".order.controller.OrderActivity"
             android:label="@string/title_activity_order"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--

@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             JSONObject jsonObject = new JSONObject(response);
                             currentusermodel = gson.fromJson(jsonObject.toString(), CurrentUser.class);
                             startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
+                            finish();
                             Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             editor.putString(Sp_Status, "LoggedIn");
                             editor.commit();

@@ -1,4 +1,4 @@
-package materialtest.example.centura.centura_bhagyalakshmi.view;
+package materialtest.example.centura.centura_bhagyalakshmi.order.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
