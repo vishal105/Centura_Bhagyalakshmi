@@ -1,10 +1,10 @@
 package materialtest.example.centura.centura_bhagyalakshmi.order.controller;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -16,12 +16,14 @@ import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
+import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 import materialtest.example.centura.centura_bhagyalakshmi.order.Adapter.OrderActivity_Adapter;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 
 public class OrderActivity extends AppCompatActivity {
     RecyclerView orderRecyclerView;
     LinearLayout orderedLayout,emptyOrders;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
     private static ArrayList<Order> orderList = new ArrayList<Order>();
 
     @Override
@@ -31,11 +33,17 @@ public class OrderActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         orderRecyclerView = (RecyclerView) findViewById(R.id.rv_order);
-        orderRecyclerView.setLayoutManager(new LinearLayoutManager(OrderActivity.this));
-        recyclerAdapter(OrderActivity.this);
-        emptyOrders = (LinearLayout) findViewById(R.id.empty_active_orders);
-        orderedLayout=(LinearLayout)findViewById(R.id.active_ordered_layout);
+        orderRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        orderRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new OrderActivity_Adapter(getDataSet());
+        orderRecyclerView.setAdapter(mAdapter);
+        RecyclerView.ItemDecoration itemDecoration =
+                new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+        orderRecyclerView.addItemDecoration(itemDecoration);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -45,20 +53,6 @@ public class OrderActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
-
-    private void recyclerAdapter(Context context) {
-
-        if(orderList.size()!=0){
-            emptyOrders.setVisibility(View.GONE);
-            orderedLayout.setVisibility(View.VISIBLE);
-            orderRecyclerView.setVisibility(View.VISIBLE);
-            orderRecyclerView.setAdapter(new OrderActivity_Adapter(context, orderList));
-        }else {
-            orderRecyclerView.setVisibility(View.GONE);
-            orderedLayout.setVisibility(View.GONE);
-            emptyOrders.setVisibility(View.VISIBLE);
-        }
     }
 
 
@@ -75,6 +69,16 @@ public class OrderActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private ArrayList<OrderObject> getDataSet() {
+        ArrayList results = new ArrayList<OrderObject>();
+        for (int index = 0; index < 20; index++) {
+            OrderObject obj = new OrderObject( 0 + index ,"Some Primary Text " + index,
+                    "Secondary " + index);
+            results.add(index, obj);
+        }
+        return results;
     }
 }
 

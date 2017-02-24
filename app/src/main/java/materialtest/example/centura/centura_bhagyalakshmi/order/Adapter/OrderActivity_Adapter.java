@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
+import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 
 /**
  * Created by Basavaraju on 2/23/2017.
@@ -22,6 +23,10 @@ public class OrderActivity_Adapter extends RecyclerView.Adapter<OrderActivity_Ad
 
         this.data = orderList;
     }
+
+    public OrderActivity_Adapter(ArrayList<OrderObject> dataSet) {
+    }
+
 
     @Override
     public OrderActivity_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
