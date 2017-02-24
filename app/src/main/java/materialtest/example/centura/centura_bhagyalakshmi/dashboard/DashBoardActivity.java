@@ -86,7 +86,6 @@ public class DashBoardActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_changepassword) {
             startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
-            finish();
         } else if (id == R.id.nav_orders) {
             startActivity(new Intent(DashBoardActivity.this, OrderActivity.class));
             finish();

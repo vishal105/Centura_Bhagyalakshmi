@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,6 +33,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardAct
 import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     Gson gson;
     static int mStatusCode = 0;
+    public static String Token = Class_ModelDB.currentuserModel.getToken().toString();
     String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
     public static final String Sp_Status = "Status";
     public static final String MyPref = "MyPref";
@@ -91,21 +94,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         SharedPreferences sharedPreferences = getSharedPreferences(MyPref, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         gson = new Gson();
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            currentusermodel = gson.fromJson(jsonObject.toString(), CurrentUser.class);
-                            startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
-                            finish();
-                            Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            editor.putString(Sp_Status, "LoggedIn");
-                            editor.commit();
-                            finish();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        switch (mStatusCode) {
+                            case 200:
+                                try {
+                                    JSONObject jsonObject = new JSONObject(response);
+                                    Class_ModelDB.setCurrentuserModel(gson.fromJson(jsonObject.toString(), CurrentUser.class));
+                                    startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
+                                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    editor.putString(Sp_Status, "LoggedIn");
+                                    //editor.putString(Token, );
+                                    editor.commit();
+                                    finish();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                         }
                     }
 
-                }, new Response.ErrorListener() {
+                }
+
+                , new Response.ErrorListener()
+
+        {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
@@ -123,7 +133,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Toast.makeText(LoginActivity.this, "Server Down", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        }) {
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                mStatusCode = response.statusCode;
+                return super.parseNetworkResponse(response);
+            }
+        };
         stringRequest.setRetryPolicy(new
 
                 DefaultRetryPolicy(3000,
@@ -133,9 +149,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         );
         RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
         requestQueue.add(stringRequest);
+
+
     }
-
-
 }
 
 

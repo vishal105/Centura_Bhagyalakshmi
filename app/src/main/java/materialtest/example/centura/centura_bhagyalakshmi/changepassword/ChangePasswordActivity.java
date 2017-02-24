@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,10 +25,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
+import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
 
 public class ChangePasswordActivity extends AppCompatActivity {
@@ -130,7 +137,21 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     } else Toast.makeText(context, "Server Down", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Token",LoginActivity.Token);
+                return params;
+            }
+
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                mStatusCode = response.statusCode;
+                return super.parseNetworkResponse(response);
+            }
+        };
 
         queue.add(postrequest);
 

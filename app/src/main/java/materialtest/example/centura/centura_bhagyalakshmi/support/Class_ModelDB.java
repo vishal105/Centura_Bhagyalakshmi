@@ -8,7 +8,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
 
 public class Class_ModelDB {
 
-    private static CurrentUser currentuserModel = new CurrentUser();
+    public static CurrentUser currentuserModel = new CurrentUser();
 
     public Class_ModelDB() {
 

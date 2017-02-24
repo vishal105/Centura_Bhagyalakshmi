@@ -4,11 +4,11 @@ package materialtest.example.centura.centura_bhagyalakshmi.models;
  * Created by Centura User1 on 08-12-2016.
  */
 
-public class CurrentUser {
+public class  CurrentUser {
     private String Id;
     private String Name;
     private String Usertype;
-    private String Token;
+    private static String Token;
     private String Employee;
     private String ACL;
 
@@ -53,7 +53,7 @@ public class CurrentUser {
         Usertype = usertype;
     }
 
-    public String getToken() {
+    public static String getToken() {
         return Token;
     }
 
