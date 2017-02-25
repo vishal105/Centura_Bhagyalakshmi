@@ -141,7 +141,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Token",LoginActivity.Token);
+                params.put("Token",Class_ModelDB.currentuserModel.getToken().toString());
                 return params;
             }
 

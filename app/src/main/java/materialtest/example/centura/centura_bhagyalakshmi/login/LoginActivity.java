@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     Gson gson;
     static int mStatusCode = 0;
-    public static String Token = Class_ModelDB.currentuserModel.getToken().toString();
+    public static String Token ;
     String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
     public static final String Sp_Status = "Status";
     public static final String MyPref = "MyPref";

@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -24,7 +25,7 @@ public class OrderActivity extends AppCompatActivity {
     LinearLayout orderedLayout,emptyOrders;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static ArrayList<Order> orderList = new ArrayList<Order>();
+    private static ArrayList<OrderObject> orderList = new ArrayList<OrderObject>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +39,9 @@ public class OrderActivity extends AppCompatActivity {
         orderRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         orderRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new OrderActivity_Adapter(getDataSet());
+        mAdapter = new OrderActivity_Adapter(orderList);
         orderRecyclerView.setAdapter(mAdapter);
-        RecyclerView.ItemDecoration itemDecoration =
-                new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
-        orderRecyclerView.addItemDecoration(itemDecoration);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -70,15 +57,5 @@ public class OrderActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
-
-    private ArrayList<OrderObject> getDataSet() {
-        ArrayList results = new ArrayList<OrderObject>();
-        for (int index = 0; index < 20; index++) {
-            OrderObject obj = new OrderObject( 0 + index ,"Some Primary Text " + index,
-                    "Secondary " + index);
-            results.add(index, obj);
-        }
-        return results;
     }
-}
 

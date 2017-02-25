@@ -4,22 +4,12 @@ package materialtest.example.centura.centura_bhagyalakshmi.models;
  * Created by Centura on 2/24/2017.
  */
 public class OrderObject {
-    public Integer Id;
-    public String OrderNumber,Status;
+    private String OrderNumber,Status,Id;
 
-    public OrderObject(int i, String s, String s1) {
-        Id = 0;
-        OrderNumber="";
-        Status="";
-
-    }
-
-    public Integer getId() {
-        return Id;
-    }
-
-    public void setId(Integer id) {
-        Id = id;
+    public OrderObject() {
+        OrderNumber = "";
+        Status = "";
+        Id = "";
     }
 
     public String getOrderNumber() {
@@ -36,5 +26,13 @@ public class OrderObject {
 
     public void setStatus(String status) {
         Status = status;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 }

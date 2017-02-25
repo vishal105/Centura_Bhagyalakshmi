@@ -88,7 +88,6 @@ public class DashBoardActivity extends AppCompatActivity
             startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
         } else if (id == R.id.nav_orders) {
             startActivity(new Intent(DashBoardActivity.this, OrderActivity.class));
-            finish();
         } else if (id == R.id.nav_logout) {
             SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.MyPref, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
