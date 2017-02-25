@@ -9,21 +9,22 @@
             android:icon="@drawable/ic_action_home"
             android:title="Home"/>
         <item
-            android:id="@+id/nav_myprofile"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="My profile" />
-        <item
-            android:id="@+id/nav_changepassword"
-            android:icon="@drawable/ic_action_key"
-            android:title="Change Password" />
-        <item
             android:id="@+id/nav_orders"
             android:icon="@drawable/ic_action_order"
             android:title="Orders" />
         <item
+            android:id="@+id/nav_myprofile"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="My profile" />
+
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_logout_rounded_left_filled_50"
             android:title="Logout" />
+        <item
+            android:id="@+id/nav_changepassword"
+            android:icon="@drawable/ic_action_key"
+            android:title="Change Password" />
     </group>
 
     <!--<item android:title="Communicate">
