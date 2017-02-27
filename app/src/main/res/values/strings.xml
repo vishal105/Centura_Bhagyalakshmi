@@ -18,5 +18,6 @@
     <string name="dashboard_statistics">dashboard statictics</string>
     <string name="title_activity_change_password1">ChangePassword</string>
     <string name="splash_name">Bhagyalakshmi</string>
-    <string name="title_activity_select_order_activity">Select_order_activity</string>
+    <string name="title_activity_select_order_activity">Bhagyalakshmi Enterprises</string>
+    <string name="order_total">Total:</string>
 </resources>

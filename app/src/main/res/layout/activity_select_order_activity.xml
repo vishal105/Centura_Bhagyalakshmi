@@ -21,6 +21,197 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:background="@color/color_400">
+
+
+            <TextView
+                android:id="@+id/odtv"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dimen_10dp"
+                android:paddingBottom="@dimen/dimen_10dp"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:text="Order Date:"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/et_date"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dimen_10dp" />
+
+            <TextView
+                android:id="@+id/odtv1"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_10dp"
+                android:paddingBottom="@dimen/dimen_10dp"
+                android:text="Order No:" />
+
+
+            <TextView
+                android:id="@+id/et_num"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="@dimen/dimen_10dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:background="@color/color_400">
+
+
+            <TextView
+                android:id="@+id/tv_placed_by_show"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_10dp"
+                android:paddingBottom="@dimen/dimen_10dp"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:padding="@dimen/dimen_10dp"
+                android:text="Placed By:"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tv_placed_by"
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dimen_10dp" />
+
+            <TextView
+                android:id="@+id/tv_distributor_show"
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/dimen_10dp"
+                android:paddingBottom="@dimen/dimen_10dp"
+                android:text="Distributor:" />
+
+
+            <TextView
+                android:id="@+id/tv_distributor"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+
+            android:id="@+id/active_ordered_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:id="@+id/linear1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/pdtv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/grey"
+                    android:padding="10dp"
+                    android:textColor="@color/color_400"
+                    android:text="Product/Description" />
+
+                <TextView
+                    android:id="@+id/qty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/grey"
+                    android:padding="10dp"
+                    android:textColor="@color/color_400"
+                    android:text="Qty/Units" />
+
+                <TextView
+                    android:id="@+id/prtv2"
+                    android:layout_width="166dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/grey"
+                    android:textColor="@color/color_400"
+                    android:padding="10dp"
+                    android:text="Price" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/select_orders"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="3dp"
+                android:padding="6dp">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/bottom_layout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="@string/order_total"
+            android:padding="@dimen/dimen_10dp"
+            android:textSize="20dp"
+            android:id="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/dimen_10dp" />
+    </LinearLayout>
+
 
 
 
