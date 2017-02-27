@@ -49,7 +49,7 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-       holder.tv_order_id.setText(mdataset.get(position).getId());
+        holder.tv_order_id.setText(mdataset.get(position).getId());
         holder.tv_order_name.setText(mdataset.get(position).getOrderNumber());
         holder.tv_order_status.setText(mdataset.get(position).getStatus());
     }
