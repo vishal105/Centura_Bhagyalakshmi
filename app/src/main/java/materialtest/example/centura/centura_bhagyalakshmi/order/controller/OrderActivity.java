@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +16,6 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
-import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 import materialtest.example.centura.centura_bhagyalakshmi.order.Adapter.OrderActivity_Adapter;
 
@@ -26,6 +23,7 @@ public class OrderActivity extends AppCompatActivity {
     RecyclerView orderRecyclerView;
     LinearLayout orderedLayout,emptyOrders;
     Button Test_Button;
+    FloatingActionButton fab;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private static ArrayList<OrderObject> orderList = new ArrayList<OrderObject>();
@@ -38,13 +36,19 @@ public class OrderActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OrderActivity.this,Distrubutor.class));
+            }
+        });
 
         Test_Button = (Button) findViewById(R.id.test_Button);
         Test_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(OrderActivity.this,Select_order_activity.class));
-                finish();
             }
         });
 
@@ -65,6 +69,8 @@ public class OrderActivity extends AppCompatActivity {
 
     private void Functionality(OrderActivity orderActivity) {
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

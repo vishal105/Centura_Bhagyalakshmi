@@ -50,7 +50,10 @@
         <activity
             android:name=".order.controller.Select_order_activity"
             android:label="@string/title_activity_select_order_activity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".order.controller.Distrubutor"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
