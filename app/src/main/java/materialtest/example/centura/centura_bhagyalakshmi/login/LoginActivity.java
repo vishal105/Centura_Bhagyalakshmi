@@ -93,17 +93,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(String response) {
                         SharedPreferences sharedPreferences = getSharedPreferences(MyPref, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        gson = new Gson();
+                        SharedPreferences.Editor editor1 = sharedPreferences.edit();
+
                         switch (mStatusCode) {
                             case 200:
                                 try {
+                                    gson = new Gson();
                                     JSONObject jsonObject = new JSONObject(response);
-                                    Class_ModelDB.setCurrentuserModel(gson.fromJson(jsonObject.toString(), CurrentUser.class));
+                                    Class_ModelDB.setCurrentuserModel(gson.fromJson(response.toString(),CurrentUser.class));
                                     startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
                                     Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     editor.putString(Sp_Status, "LoggedIn");
-                                    //editor.putString(Token, );
+                                    //editor1.putString(Token, Class_ModelDB.getCurrentuserModel().getToken());
                                     editor.commit();
+
                                     finish();
                                 } catch (JSONException e) {
                                     e.printStackTrace();

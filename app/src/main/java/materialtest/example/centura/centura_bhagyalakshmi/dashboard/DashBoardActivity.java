@@ -93,6 +93,7 @@ public class DashBoardActivity extends AppCompatActivity
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.clear();
             editor.commit();
+
             Intent i = new Intent(DashBoardActivity.this, LoginActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

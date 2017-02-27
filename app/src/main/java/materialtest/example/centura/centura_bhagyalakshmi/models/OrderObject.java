@@ -10,6 +10,7 @@ public class OrderObject {
         OrderNumber = "";
         Status = "";
         Id = "";
+
     }
 
     public String getOrderNumber() {

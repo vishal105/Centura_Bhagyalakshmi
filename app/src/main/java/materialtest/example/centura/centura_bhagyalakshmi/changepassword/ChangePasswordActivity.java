@@ -2,6 +2,8 @@ package materialtest.example.centura.centura_bhagyalakshmi.changepassword;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -112,10 +114,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
+
                         switch (mStatusCode) {
                             case 200:
                                 Toast.makeText(context, "Password Updated", Toast.LENGTH_SHORT).show();
-                                ((Activity) context).finish();
+                                startActivity(new Intent(ChangePasswordActivity.this,LoginActivity.class));
                                 break;
                         }
                     }
@@ -141,7 +144,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Token",Class_ModelDB.currentuserModel.getToken().toString());
+                params.put("Token",Class_ModelDB.getCurrentuserModel().getToken());
                 return params;
             }
 
