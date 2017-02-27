@@ -6,11 +6,10 @@ package materialtest.example.centura.centura_bhagyalakshmi.models;
 public class OrderObject {
     private String OrderNumber,Status,Id;
 
-    public OrderObject() {
-        OrderNumber = "";
-        Status = "";
-        Id = "";
-
+    public OrderObject(String orderNumber, String status, String id) {
+        OrderNumber = orderNumber;
+        Status = status;
+        Id = id;
     }
 
     public String getOrderNumber() {

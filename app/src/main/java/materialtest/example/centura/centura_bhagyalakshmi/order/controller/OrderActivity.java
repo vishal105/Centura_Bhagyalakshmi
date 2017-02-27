@@ -56,6 +56,13 @@ public class OrderActivity extends AppCompatActivity {
         orderRecyclerView.setAdapter(mAdapter);
         Functionality(OrderActivity.this);
         InitializeAdapter(OrderActivity.this);
+        recyclerviewdata();
+    }
+
+    private void recyclerviewdata() {
+        OrderObject orderObject = new OrderObject("abd","xyz","abc");
+        orderObject = new OrderObject("abd","xyz","abc");
+        orderList.add(orderObject);
     }
 
     private void InitializeAdapter(OrderActivity orderActivity) {
