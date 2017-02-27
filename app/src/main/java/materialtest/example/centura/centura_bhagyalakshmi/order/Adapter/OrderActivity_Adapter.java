@@ -17,6 +17,13 @@ import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 
 public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_Adapter.ViewHolder> {
     private ArrayList<OrderObject>mdataset;
+    Context mcontext;
+    ArrayList<Order> data;
+    public OrderActivity_Adapter(Context context, ArrayList<Order> model) {
+        this.mcontext = context;
+        this.data = model;
+    }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tv_order_id,tv_order_name,tv_order_status;
@@ -44,7 +51,7 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public OrderActivity_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;

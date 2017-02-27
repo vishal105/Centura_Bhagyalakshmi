@@ -9,15 +9,24 @@ public class Order {
     private String Name;
     private BigInteger TimeStamp;
     public static boolean LoadOrders = true;
+    private String Status;
 
     public Order() {
         Id = "";
         Name = new String();
+        Status = "";
 
         TimeStamp = BigInteger.valueOf(0);
 
     }
 
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
 
     public String getId() {
         return Id;

@@ -6,15 +6,17 @@
     android:orientation="horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_below="@+id/ordr_toolbar">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="There are no Orders!!!"
-            android:textSize="@dimen/textsize_18sp"
-            android:layout_weight="1"
-            android:gravity="left"
-            android:id="@+id/tv_order_id"/>
-        <TextView
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="There are no Orders!!!"
+        android:textSize="@dimen/textsize_18sp"
+        android:layout_weight="1"
+        android:gravity="left"
+        android:id="@+id/tv_order_id"/>
+
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="There are no Orders!!!"
@@ -22,14 +24,15 @@
             android:gravity="left"
             android:layout_weight="1"
             android:id="@+id/tv_order_name"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="There are no Orders!!!"
-            android:textSize="@dimen/textsize_18sp"
-            android:gravity="left"
-            android:layout_weight="1"
-            android:id="@+id/tv_order_status"/>
 
-    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="There are no Orders!!!"
+        android:textSize="@dimen/textsize_18sp"
+        android:gravity="left"
+        android:layout_weight="1"
+        android:id="@+id/tv_order_status"/>
+
+</LinearLayout>
 

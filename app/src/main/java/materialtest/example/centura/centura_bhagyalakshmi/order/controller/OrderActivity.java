@@ -54,6 +54,16 @@ public class OrderActivity extends AppCompatActivity {
         orderRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new OrderActivity_Adapter(orderList);
         orderRecyclerView.setAdapter(mAdapter);
+        Functionality(OrderActivity.this);
+        InitializeAdapter(OrderActivity.this);
+    }
+
+    private void InitializeAdapter(OrderActivity orderActivity) {
+
+
+    }
+
+    private void Functionality(OrderActivity orderActivity) {
     }
 
     @Override
