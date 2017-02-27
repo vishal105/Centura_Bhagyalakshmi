@@ -14,9 +14,6 @@ import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 
-/**
- * Created by Basavaraju on 2/23/2017.
- */
 
 public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_Adapter.ViewHolder> {
     private ArrayList<OrderObject>mdataset;
