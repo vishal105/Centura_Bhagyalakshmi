@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     Gson gson;
     static int mStatusCode = 0;
-    public static String Token ;
+    public static String Sp_Token="Token" ;
     String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
     public static final String Sp_Status = "Status";
     public static final String MyPref = "MyPref";
@@ -93,8 +93,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onResponse(String response) {
                         SharedPreferences sharedPreferences = getSharedPreferences(MyPref, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        SharedPreferences.Editor editor1 = sharedPreferences.edit();
-
                         switch (mStatusCode) {
                             case 200:
                                 try {
@@ -104,7 +102,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
                                     Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     editor.putString(Sp_Status, "LoggedIn");
-                                    //editor1.putString(Token, Class_ModelDB.getCurrentuserModel().getToken());
+                                    editor.putString(Sp_Token, jsonObject.optString("Token").toString());
+                                    editor.apply();
                                     editor.commit();
 
                                     finish();

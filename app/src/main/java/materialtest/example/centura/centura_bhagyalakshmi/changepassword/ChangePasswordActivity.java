@@ -42,6 +42,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     EditText old_password_et, new_password_et, confirm_password_et;
     Button cancel_button, save_button;
+    public static SharedPreferences sharedPreferences;
 
     static int mStatusCode = 0;
 
@@ -59,6 +60,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
         cancel_button = (Button) findViewById(R.id.cancel_button);
         save_button = (Button) findViewById(R.id.save_button);
         onClicks();
+        sharedPreferences = this.getSharedPreferences(LoginActivity.MyPref, MODE_PRIVATE);
+
 
     }
 
@@ -144,7 +147,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Token",Class_ModelDB.getCurrentuserModel().getToken());
+                params.put("Token", sharedPreferences.getString(LoginActivity.Sp_Token,""));
                 return params;
             }
 

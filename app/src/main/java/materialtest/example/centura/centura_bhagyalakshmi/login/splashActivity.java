@@ -1,5 +1,6 @@
 package materialtest.example.centura.centura_bhagyalakshmi.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
@@ -16,7 +17,7 @@ import static materialtest.example.centura.centura_bhagyalakshmi.support.Class_U
 public class splashActivity extends AppCompatActivity {
 
     public static final int SPLASH_DISPLAY_LENGTH = 1000;
-    static SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class splashActivity extends AppCompatActivity {
 
 
 
-        sharedPreferences = this.getSharedPreferences(LoginActivity.MyPref, this.MODE_PRIVATE);
+        sharedPreferences = this.getSharedPreferences(LoginActivity.MyPref, MODE_PRIVATE);
 
         new Handler().postDelayed(new Runnable() {
             @Override
