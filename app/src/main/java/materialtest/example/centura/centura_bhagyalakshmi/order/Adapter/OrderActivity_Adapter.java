@@ -16,16 +16,44 @@ import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 
 
 public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_Adapter.ViewHolder> {
+
+    private static String LOG_TAG ="OrderActivity_Adapter";
     private ArrayList<OrderObject>mdataset;
+    private static MyClickListener myClickListener;
     Context mcontext;
-    ArrayList<Order> data;
-    public OrderActivity_Adapter(Context context, ArrayList<Order> model) {
-        this.mcontext = context;
-        this.data = model;
+    ArrayList<OrderObject> data;
+
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView tv_order_id,tv_order_name,tv_order_status;
+
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tv_order_id= (TextView) itemView.findViewById(R.id.tv_order_id);
+            tv_order_name= (TextView) itemView.findViewById(R.id.tv_order_name);
+            tv_order_status= (TextView) itemView.findViewById(R.id.tv_order_status);
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            myClickListener.onItemClick(getPosition(), view);
+
+        }
+    }
+
+    public void setOnItemClickListener(MyClickListener myClickListener) {
+        this.myClickListener = myClickListener;
+    }
+
+    public OrderActivity_Adapter(ArrayList<OrderObject> mydataset) {
+        mdataset = mydataset;
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+
+    /* public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tv_order_id,tv_order_name,tv_order_status;
 
         public ViewHolder(View itemView) {
@@ -34,7 +62,7 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
             tv_order_name= (TextView) itemView.findViewById(R.id.tv_order_name);
             tv_order_status= (TextView) itemView.findViewById(R.id.tv_order_status);
         }
-    }
+    }*/
    /* public void add(int position, String item){
         mdataset.add(position,item);
         notifyItemInserted(position);
@@ -46,9 +74,9 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
         notifyItemRemoved(position);
     }
 */
-    public OrderActivity_Adapter(ArrayList<OrderObject> mydataset){
+   /* public OrderActivity_Adapter(ArrayList<OrderObject> mydataset){
         mdataset = mydataset;
-    }
+    }*/
 
     @Override
     public OrderActivity_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,11 +90,29 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
         holder.tv_order_id.setText(mdataset.get(position).getId());
         holder.tv_order_name.setText(mdataset.get(position).getOrderNumber());
         holder.tv_order_status.setText(mdataset.get(position).getStatus());
+
     }
+
+    public void addItem(OrderObject dataObj, int index) {
+        mdataset.add(dataObj);
+        notifyItemInserted(index);
+    }
+
+    public void deleteItem(int index) {
+        mdataset.remove(index);
+        notifyItemRemoved(index);
+    }
+
 
     @Override
     public int getItemCount() {
         return mdataset.size();
+    }
+
+    public interface MyClickListener{
+
+        public void onItemClick(int position, View v);
+
     }
 }
 

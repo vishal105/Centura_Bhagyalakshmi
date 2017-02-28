@@ -11,13 +11,11 @@ public class Order {
     public static boolean LoadOrders = true;
     private String Status;
 
-    public Order() {
-        Id = "";
-        Name = new String();
-        Status = "";
-
-        TimeStamp = BigInteger.valueOf(0);
-
+    public Order(String id, String name, BigInteger timeStamp, String status) {
+        Id = id;
+        Name = name;
+        TimeStamp = timeStamp;
+        Status = status;
     }
 
     public String getStatus() {
