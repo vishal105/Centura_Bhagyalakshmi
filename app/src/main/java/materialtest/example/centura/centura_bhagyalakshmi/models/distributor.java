@@ -37,4 +37,5 @@ public class distributor {
     public void setTimeStamp(BigInteger timeStamp) {
         TimeStamp = timeStamp;
     }
-}
+
+    }
