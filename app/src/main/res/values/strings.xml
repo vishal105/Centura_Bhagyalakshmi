@@ -20,6 +20,6 @@
     <string name="splash_name">Bhagyalakshmi</string>
     <string name="title_activity_select_order_activity">Bhagyalakshmi Enterprises</string>
     <string name="order_total">Total:</string>
-    <string name="title_activity_distrubutor">Distrubutor</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="addandnew">SAVE AND NEW</string>
+    <string name="quantity">Quantity</string>
 </resources>

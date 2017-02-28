@@ -5,75 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="materialtest.example.centura.centura_bhagyalakshmi.order.controller.Distrubutor">
-
+    tools:context="materialtest.example.centura.centura_bhagyalakshmi.order.controller.DistrubutorSearchActivity">
 
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/ordr_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        android:id="@+id/ordr_toolbar">
+        android:theme="@style/AppTheme.AppBarOverlay">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:titleTextColor="@color/white"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            android:weightSum="1">
+            android:weightSum="1"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:orientation="horizontal"
-            android:layout_weight="3.44"
-            android:weightSum="1">
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/round_shape"
-                android:layout_weight="1.39">
+                android:layout_height="match_parent"
+                android:layout_weight="3.44"
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-
-                <EditText
-                    android:id="@+id/order_search"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toLeftOf="@+id/search_icon"
-                    android:background="@color/white"
-                    android:hint="Search Distributor"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/colorPrimary"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:id="@+id/search_icon"
-                    android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_search" />
-            </RelativeLayout>
-        </LinearLayout>
+                    android:layout_gravity="center"
+                    android:layout_weight="1.39"
+                    android:background="@drawable/round_shape">
+
+
+                    <EditText
+                        android:id="@+id/order_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toLeftOf="@+id/search_icon"
+                        android:background="@color/white"
+                        android:hint="Search Distributor"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/search_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_search" />
+                </RelativeLayout>
+            </LinearLayout>
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-    <ListView
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_distributor_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lv_distributor"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
-    </ListView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/dimen_5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
 </android.support.design.widget.CoordinatorLayout>

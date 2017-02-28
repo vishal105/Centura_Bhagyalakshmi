@@ -50,10 +50,12 @@
         <activity
             android:name=".order.controller.Select_order_activity"
             android:label="@string/title_activity_select_order_activity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".order.controller.Distrubutor"
-            android:theme="@style/AppTheme" />
+            android:name=".order.controller.DistrubutorSearchActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>

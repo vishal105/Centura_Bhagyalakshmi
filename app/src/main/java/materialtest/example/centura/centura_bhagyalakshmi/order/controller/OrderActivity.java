@@ -3,7 +3,6 @@ package materialtest.example.centura.centura_bhagyalakshmi.order.controller;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,7 +39,7 @@ public class OrderActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(OrderActivity.this,Distrubutor.class));
+                startActivity(new Intent(OrderActivity.this,DistrubutorSearchActivity.class));
             }
         });
 
@@ -53,7 +52,7 @@ public class OrderActivity extends AppCompatActivity {
         });
 
         orderRecyclerView = (RecyclerView) findViewById(R.id.rv_order);
-        orderRecyclerView.setHasFixedSize(true);
+        /*orderRecyclerView.setHasFixedSize(true);*/
         mLayoutManager = new LinearLayoutManager(this);
         orderRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new OrderActivity_Adapter(orderList);
