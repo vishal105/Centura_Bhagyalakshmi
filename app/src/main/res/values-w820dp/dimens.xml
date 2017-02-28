@@ -9,6 +9,5 @@
     <dimen name="dimen_4dp">4dp</dimen>
     <dimen name="text_size">24sp</dimen>
     <dimen name="textsize_18sp">18sp</dimen>
-    <dimen name="dimen_50dp">50dp</dimen>
-    <dimen name="dimen_30dp">30dp</dimen>
+    <dimen name="textsize_14sp">14sp</dimen>
 </resources>

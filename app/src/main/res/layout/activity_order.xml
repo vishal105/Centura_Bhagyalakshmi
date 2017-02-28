@@ -7,9 +7,6 @@
     android:fitsSystemWindows="true"
     tools:context="materialtest.example.centura.centura_bhagyalakshmi.order.controller.OrderActivity">
 
-
-
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,13 +63,22 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <com.andexert.library.RippleView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_add" />
+        android:layout_gravity="bottom|end">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_input_add"/>
+    </com.andexert.library.RippleView>
+
+
+
 
     <LinearLayout
         android:id="@+id/active_ordered_layout"
@@ -112,14 +118,14 @@
                 android:text="Order Status" />
         </LinearLayout>
 
-        <Button
+        <!--<Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/test_Button"
-            android:text="tese Button"/>
+            android:text="tese Button"/>-->
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:layout_marginTop="3dp"
             android:padding="6dp"

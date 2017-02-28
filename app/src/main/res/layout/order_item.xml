@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:layout_below="@+id/ordr_toolbar">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/ordr_toolbar"
+    android:weightSum="3"
+    android:orientation="horizontal">
+
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_order_id"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="There are no Orders!!!"
-        android:textSize="@dimen/textsize_18sp"
+        android:padding="5dp"
         android:layout_weight="1"
-        android:gravity="left"
-        android:id="@+id/tv_order_id"/>
+        android:text="There are no Orders!!!"
+        android:textSize="@dimen/textsize_14sp" />
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="There are no Orders!!!"
-            android:textSize="@dimen/textsize_18sp"
-            android:gravity="left"
-            android:layout_weight="1"
-            android:id="@+id/tv_order_name"/>
-
-    <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tv_order_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="There are no Orders!!!"
-        android:textSize="@dimen/textsize_18sp"
-        android:gravity="left"
+        android:padding="5dp"
         android:layout_weight="1"
-        android:id="@+id/tv_order_status"/>
+        android:text="There are no Orders!!!"
+        android:textSize="@dimen/textsize_14sp" />
+
+    <TextView
+        android:id="@+id/tv_order_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_weight="1"
+        android:text="There are no Orders!!!"
+        android:textSize="@dimen/textsize_14sp" />
 
 </LinearLayout>
+
+
+
 
