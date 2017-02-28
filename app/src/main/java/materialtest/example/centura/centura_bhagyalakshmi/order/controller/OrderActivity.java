@@ -1,11 +1,13 @@
 package materialtest.example.centura.centura_bhagyalakshmi.order.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +23,8 @@ import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 import materialtest.example.centura.centura_bhagyalakshmi.order.Adapter.OrderActivity_Adapter;
+import materialtest.example.centura.centura_bhagyalakshmi.support.All_api;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 
 public class OrderActivity extends AppCompatActivity {
     private RecyclerView orderRecyclerView;
@@ -28,8 +32,8 @@ public class OrderActivity extends AppCompatActivity {
     Button Test_Button;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static ArrayList<OrderObject> orderList = new ArrayList<OrderObject>();
-    private static String LOG_TAG = "OrderActivity_Adapter";
+    private static ArrayList<Order> orderList = new ArrayList<Order>();
+    FloatingActionButton fb_addorder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +50,39 @@ public class OrderActivity extends AppCompatActivity {
                 finish();
             }
         });*/
+        fb_addorder = (FloatingActionButton) findViewById(R.id.fb_addorder);
+        fb_addorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                All_api.Orderapi(OrderActivity.this);
+                startActivity(new Intent(OrderActivity.this,DistrubutorSearchActivity.class));
+            }
+        });
 
         orderRecyclerView = (RecyclerView) findViewById(R.id.rv_order);
        // orderRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         orderRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new OrderActivity_Adapter(orderList);
-        orderRecyclerView.setAdapter(mAdapter);
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
-        orderRecyclerView.addItemDecoration(itemDecoration);
+        mAdapter = new OrderActivity_Adapter(this);
+        //orderRecyclerView.setAdapter(new OrderActivity_Adapter(OrderActivity.this));
+        /*RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
+        orderRecyclerView.addItemDecoration(itemDecoration);*/
+        InitializeAdapter(OrderActivity.this);
 //        recyclerviewdata();
-        orderList();
+        //orderList();
     }
 
+    private void InitializeAdapter(Context context ) {
+        orderRecyclerView.setAdapter(new OrderActivity_Adapter(context));
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
+        orderRecyclerView.addItemDecoration(itemDecoration);
+    }
+
+    /*public static void InitializeAdapter(Context context) {
+        orderList.setLayoutManager(new GridLayoutManager(context, 2));
+        servicesRecyclerview.setAdapter(new ServicesAdapter(context));
+    }*/
+/*
     @Override
     protected void onResume() {
         super.onResume();
@@ -67,25 +91,24 @@ public class OrderActivity extends AppCompatActivity {
             public void onItemClick(int position, View v) {
                 startActivity(new Intent(OrderActivity.this, Select_order_activity.class));
                 finish();
-                Log.i(LOG_TAG, " Clicked on Item " + position);
             }
         });
-    }
+    }*/
 
-    /*private void recyclerviewdata() {
+   /* private void recyclerviewdata() {
         OrderObject orderObject;
         orderObject = new OrderObject("SO-0217-0725", "R.K.DISTRIBUTERS", "Authorized");
         orderList.add(orderObject);
 
-    }*/
-
-    private ArrayList<OrderObject> orderList() {
+    }
+*/
+   /* private ArrayList<OrderObject> orderList() {
         ArrayList results = new ArrayList<OrderObject>();
 
         OrderObject orderObject = new OrderObject("SO-0217-0725", "R.K.DISTRIBUTERS", "Authorized");
         orderList.add(orderObject);
         return results;
-    }
+    }*/
 
 
     @Override

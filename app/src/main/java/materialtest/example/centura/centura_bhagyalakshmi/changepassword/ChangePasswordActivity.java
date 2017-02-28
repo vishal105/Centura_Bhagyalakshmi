@@ -34,6 +34,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
+import materialtest.example.centura.centura_bhagyalakshmi.support.All_api;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
@@ -47,6 +48,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     static int mStatusCode = 0;
 
     public String oldpassword, newpassword, confirmpassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,15 +73,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                oldpassword = old_password_et.getText().toString().trim();
-                newpassword = new_password_et.getText().toString().trim();
-                confirmpassword = confirm_password_et.getText().toString().trim();
-
-                if (oldpassword.length() >= 1) {
-                    if (newpassword.length() >= 1) {
-                        if (confirmpassword.length() >= 1) {
-                            if (newpassword.matches(confirmpassword)) {
-                                changepasswordApi(ChangePasswordActivity.this, old_password_et, new_password_et);
+                if (old_password_et.getText().toString().trim().length() >= 1) {
+                    if (new_password_et.getText().toString().trim().length() >= 1) {
+                        if (confirm_password_et.getText().toString().trim().length() >= 1) {
+                            if (new_password_et.getText().toString().trim().matches(confirm_password_et.getText().toString().trim())) {
+                                All_api.changepasswordApi(ChangePasswordActivity.this, old_password_et, new_password_et);
                             } else {
                                 Toast.makeText(ChangePasswordActivity.this, "Password Didn't Match", Toast.LENGTH_SHORT).show();
                             }
@@ -105,64 +103,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     }
 
-    private void changepasswordApi(final Context context, EditText oldPassword, EditText newPassword) {
-
-        RequestQueue queue = Volley.newRequestQueue(context);
-        ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
-        params.add(new KeyValuePair("OldPassword", oldPassword.getText().toString()));
-        params.add(new KeyValuePair("NewPassword", newPassword.getText().toString()));
-
-        StringRequest postrequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.ChangePassword, params),
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-
-                        switch (mStatusCode) {
-                            case 200:
-                                Toast.makeText(context, "Password Updated", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(ChangePasswordActivity.this,LoginActivity.class));
-                                break;
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-
-                    Toast.makeText(ChangePasswordActivity.this, "Connection Error, Please check your internet connection", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    if (error != null && error.networkResponse != null) {
-                        mStatusCode = error.networkResponse.statusCode;
-                        switch (mStatusCode) {
-                            case 400:
-                                Toast.makeText(context, "Invalid Token", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
-                    } else Toast.makeText(context, "Server Down", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Token", sharedPreferences.getString(LoginActivity.Sp_Token,""));
-                return params;
-            }
-
-
-            @Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                mStatusCode = response.statusCode;
-                return super.parseNetworkResponse(response);
-            }
-        };
-
-        queue.add(postrequest);
-
-
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

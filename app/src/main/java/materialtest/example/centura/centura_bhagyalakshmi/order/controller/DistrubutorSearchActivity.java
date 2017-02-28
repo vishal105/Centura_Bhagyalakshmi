@@ -10,7 +10,8 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
-import materialtest.example.centura.centura_bhagyalakshmi.models.Distributor;
+import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
+import materialtest.example.centura.centura_bhagyalakshmi.models.distributor;
 
 public class DistrubutorSearchActivity extends AppCompatActivity {
     public static RecyclerView distributor_list;
@@ -25,7 +26,7 @@ public class DistrubutorSearchActivity extends AppCompatActivity {
 
         distributor_list = (RecyclerView) findViewById(R.id.rv_distributor_list);
         distributor_list.setLayoutManager(new LinearLayoutManager(DistrubutorSearchActivity.this));
-        ArrayList<Distributor> tempRoleList=new ArrayList<Distributor>();
+        ArrayList<Order> tempRoleList=new ArrayList<Order>();
 
 
     }

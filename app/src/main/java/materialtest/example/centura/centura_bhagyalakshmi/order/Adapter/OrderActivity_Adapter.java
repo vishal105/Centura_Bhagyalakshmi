@@ -18,10 +18,10 @@ import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_Adapter.ViewHolder> {
 
     private static String LOG_TAG ="OrderActivity_Adapter";
-    private ArrayList<OrderObject>mdataset;
+    private ArrayList<Order> mdataset;
     private static MyClickListener myClickListener;
     Context mcontext;
-    ArrayList<OrderObject> data;
+    ArrayList<Order> data;
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tv_order_id,tv_order_name,tv_order_status;
@@ -33,7 +33,7 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
             tv_order_id= (TextView) itemView.findViewById(R.id.tv_order_id);
             tv_order_name= (TextView) itemView.findViewById(R.id.tv_order_name);
             tv_order_status= (TextView) itemView.findViewById(R.id.tv_order_status);
-
+            //mdataset = new ArrayList<Order>();
         }
 
         @Override
@@ -44,11 +44,12 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
     }
 
     public void setOnItemClickListener(MyClickListener myClickListener) {
-        this.myClickListener = myClickListener;
+        OrderActivity_Adapter.myClickListener = myClickListener;
     }
 
-    public OrderActivity_Adapter(ArrayList<OrderObject> mydataset) {
-        mdataset = mydataset;
+    public OrderActivity_Adapter(Context context) {
+        this.mcontext = context;
+        //mdataset = mydataset;
     }
 
 
@@ -93,7 +94,7 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
 
     }
 
-    public void addItem(OrderObject dataObj, int index) {
+    public void addItem(Order dataObj, int index) {
         mdataset.add(dataObj);
         notifyItemInserted(index);
     }
@@ -111,7 +112,7 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
 
     public interface MyClickListener{
 
-        public void onItemClick(int position, View v);
+        void onItemClick(int position, View v);
 
     }
 }

@@ -17,6 +17,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.changepassword.ChangePasswordActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.order.controller.OrderActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.support.All_api;
 
 public class DashBoardActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,7 +36,6 @@ public class DashBoardActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -87,7 +87,7 @@ public class DashBoardActivity extends AppCompatActivity
         } else if (id == R.id.nav_changepassword) {
             startActivity(new Intent(DashBoardActivity.this, ChangePasswordActivity.class));
         } else if (id == R.id.nav_orders) {
-            startActivity(new Intent(DashBoardActivity.this, OrderActivity.class));
+            All_api.Orderapi(DashBoardActivity.this);
         } else if (id == R.id.nav_logout) {
             SharedPreferences sharedPreferences = getSharedPreferences(LoginActivity.MyPref, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();

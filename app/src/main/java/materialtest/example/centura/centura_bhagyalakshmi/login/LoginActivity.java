@@ -32,6 +32,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
+import materialtest.example.centura.centura_bhagyalakshmi.support.All_api;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     Gson gson;
     static int mStatusCode = 0;
-    public static String Sp_Token="Token" ;
+    public static final String Sp_Token="Token" ;
     String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
     public static final String Sp_Status = "Status";
     public static final String MyPref = "MyPref";
@@ -68,11 +69,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        username = et_username.getText().toString().trim();
-        password = et_password.getText().toString().trim();
-        if (username.length() >= 1) {
-            if (password.length() >= 1) {
-                loginapi();
+        if (et_username.getText().toString().trim().length() >= 1) {
+            if (et_password.getText().toString().trim().length() >= 1) {
+                All_api.loginapi(LoginActivity.this,et_username,et_password);
             } else {
                 et_password.setError("Please enter Password");
             }
@@ -81,79 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void loginapi() {
 
-        ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
-        params.add(new KeyValuePair("UserName", username));
-        params.add(new KeyValuePair("Password", password));
-        //String LOGIN_URL = URL + "Login/" + "?UserName=" + username + "&&Password=" + password;
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Login, params),
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        SharedPreferences sharedPreferences = getSharedPreferences(MyPref, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        switch (mStatusCode) {
-                            case 200:
-                                try {
-                                    gson = new Gson();
-                                    JSONObject jsonObject = new JSONObject(response);
-                                    Class_ModelDB.setCurrentuserModel(gson.fromJson(response.toString(),CurrentUser.class));
-                                    startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
-                                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    editor.putString(Sp_Status, "LoggedIn");
-                                    editor.putString(Sp_Token, jsonObject.optString("Token").toString());
-                                    editor.apply();
-                                    editor.commit();
-
-                                    finish();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                        }
-                    }
-
-                }
-
-                , new Response.ErrorListener()
-
-        {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    if (error != null && error.networkResponse != null) {
-                        mStatusCode = error.networkResponse.statusCode;
-                        switch (mStatusCode) {
-                            case 400:
-                                et_username.setError("Username or Password Invalid");
-                                break;
-                            case 401:
-                                et_password.setError("Password Invalid");
-                                break;
-                        }
-                    } else
-                        Toast.makeText(LoginActivity.this, "Server Down", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }) {
-            @Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                mStatusCode = response.statusCode;
-                return super.parseNetworkResponse(response);
-            }
-        };
-        stringRequest.setRetryPolicy(new
-
-                DefaultRetryPolicy(3000,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
-
-        );
-        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
-        requestQueue.add(stringRequest);
-
-
-    }
 }
 
 

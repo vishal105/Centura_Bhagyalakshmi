@@ -2,12 +2,12 @@ package materialtest.example.centura.centura_bhagyalakshmi.models;
 
 import java.math.BigInteger;
 
-public class Distributor {
+public class distributor {
     private String Id;
     private String Name;
     private BigInteger TimeStamp;
 
-    public Distributor(){
+    public distributor(){
         Id="";
         Name="";
         TimeStamp= BigInteger.valueOf(0);
