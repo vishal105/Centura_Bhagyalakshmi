@@ -30,7 +30,7 @@ public class OrderActivity extends AppCompatActivity {
     private RecyclerView orderRecyclerView;
     LinearLayout orderedLayout, emptyOrders;
     Button Test_Button;
-    private RecyclerView.Adapter mAdapter;
+    OrderActivity_Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private static ArrayList<Order> orderList = new ArrayList<Order>();
     FloatingActionButton fb_addorder;
@@ -74,6 +74,7 @@ public class OrderActivity extends AppCompatActivity {
 
     private void InitializeAdapter(Context context ) {
         orderRecyclerView.setAdapter(new OrderActivity_Adapter(context));
+
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
         orderRecyclerView.addItemDecoration(itemDecoration);
     }

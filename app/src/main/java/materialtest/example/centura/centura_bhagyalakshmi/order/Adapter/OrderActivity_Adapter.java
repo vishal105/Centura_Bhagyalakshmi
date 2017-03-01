@@ -13,17 +13,24 @@ import java.util.ArrayList;
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
+import materialtest.example.centura.centura_bhagyalakshmi.order.controller.OrderActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 
 
 public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_Adapter.ViewHolder> {
 
     private static String LOG_TAG ="OrderActivity_Adapter";
-    private ArrayList<Order> mdataset;
+    public static ArrayList<Order> mdataset;
     private static MyClickListener myClickListener;
     Context mcontext;
     ArrayList<Order> data;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public OrderActivity_Adapter(Context context) {
+        this.mcontext = context;
+        mdataset  = Class_ModelDB.getOrderList();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_order_id,tv_order_name,tv_order_status;
 
 
@@ -33,24 +40,16 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
             tv_order_id= (TextView) itemView.findViewById(R.id.tv_order_id);
             tv_order_name= (TextView) itemView.findViewById(R.id.tv_order_name);
             tv_order_status= (TextView) itemView.findViewById(R.id.tv_order_status);
-            //mdataset = new ArrayList<Order>();
-        }
-
-        @Override
-        public void onClick(View view) {
-            myClickListener.onItemClick(getPosition(), view);
 
         }
+
+
     }
 
     public void setOnItemClickListener(MyClickListener myClickListener) {
         OrderActivity_Adapter.myClickListener = myClickListener;
     }
 
-    public OrderActivity_Adapter(Context context) {
-        this.mcontext = context;
-        //mdataset = mydataset;
-    }
 
 
 
@@ -91,7 +90,6 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
         holder.tv_order_id.setText(mdataset.get(position).getId());
         holder.tv_order_name.setText(mdataset.get(position).getOrderNumber());
         holder.tv_order_status.setText(mdataset.get(position).getStatus());
-
     }
 
     public void addItem(Order dataObj, int index) {

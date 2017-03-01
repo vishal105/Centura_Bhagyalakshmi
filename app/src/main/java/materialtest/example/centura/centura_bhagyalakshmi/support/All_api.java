@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -134,6 +135,7 @@ public class All_api {
         params.add(new KeyValuePair("OldPassword", oldPassword.getText().toString().trim()));
         params.add(new KeyValuePair("NewPassword", newPassword.getText().toString().trim()));
 
+        sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
         StringRequest postrequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.ChangePassword, params),
                 new Response.Listener<String>() {
                     @Override
@@ -169,7 +171,7 @@ public class All_api {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Token",sharedPreferences.getString(Sp_Token,""));
+                params.put("Token",sharedPreferences.getString(LoginActivity.Sp_Token,""));
                 return params;
             }
 
@@ -188,6 +190,7 @@ public class All_api {
 
 
     public static void Orderapi(final Context context){
+        sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
             RequestQueue queue = Volley.newRequestQueue(context);
             ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
 //            params.add(new KeyValuePair("name", Class_ModelDB.getCurrentuserModel().getName()));
@@ -237,7 +240,7 @@ public class All_api {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Token", sharedPreferences.getString(Sp_Token,""));
+                params.put("Token", sharedPreferences.getString(LoginActivity.Sp_Token,""));
                 return params;
             }
 
