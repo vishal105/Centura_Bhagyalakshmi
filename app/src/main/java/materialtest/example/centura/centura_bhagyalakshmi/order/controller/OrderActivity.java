@@ -59,7 +59,7 @@ public class OrderActivity extends AppCompatActivity {
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        Toast.makeText(OrderActivity.this, "Don't Long Press yaar!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderActivity.this, "Click once that is more than enough", Toast.LENGTH_SHORT).show();
                     }
                 })
         );

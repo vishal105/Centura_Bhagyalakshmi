@@ -5,7 +5,10 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/ordr_toolbar"
     android:weightSum="3"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
 
     <TextView
