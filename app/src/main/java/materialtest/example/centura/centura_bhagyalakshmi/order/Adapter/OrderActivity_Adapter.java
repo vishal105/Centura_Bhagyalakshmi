@@ -1,12 +1,14 @@
 package materialtest.example.centura.centura_bhagyalakshmi.order.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -30,7 +32,7 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
         mdataset  = Class_ModelDB.getOrderList();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tv_order_id,tv_order_name,tv_order_status;
 
 
@@ -40,11 +42,24 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
             tv_order_id= (TextView) itemView.findViewById(R.id.tv_order_id);
             tv_order_name= (TextView) itemView.findViewById(R.id.tv_order_name);
             tv_order_status= (TextView) itemView.findViewById(R.id.tv_order_status);
+            itemView.setOnClickListener(this);
+
         }
+
+        @Override
+        public void onClick(View view) {
+          /*OrderActivity.click();
+            Toast.makeText(view.getContext(), "on Click Successful", Toast.LENGTH_SHORT).show();
+*/
+
+
         }
+    }
+
     @Override
     public OrderActivity_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_item,parent,false);
+
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

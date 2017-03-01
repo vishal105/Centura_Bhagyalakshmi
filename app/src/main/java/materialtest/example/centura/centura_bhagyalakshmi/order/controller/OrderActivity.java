@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -42,74 +43,42 @@ public class OrderActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        /*Test_Button = (Button) findViewById(R.id.test_Button);
-        Test_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(OrderActivity.this, Select_order_activity.class));
-                finish();
-            }
-        });*/
         fb_addorder = (FloatingActionButton) findViewById(R.id.fb_addorder);
         fb_addorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 All_api.Orderapi(OrderActivity.this);
-                startActivity(new Intent(OrderActivity.this,DistrubutorSearchActivity.class));
+                startActivity(new Intent(OrderActivity.this, DistrubutorSearchActivity.class));
             }
         });
 
         orderRecyclerView = (RecyclerView) findViewById(R.id.rv_order);
-       // orderRecyclerView.setHasFixedSize(true);
+        orderRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, orderRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        startActivity(new Intent(OrderActivity.this, Select_order_activity.class));
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        Toast.makeText(OrderActivity.this, "Don't Long Press yaar!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+        );
+
+        orderRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         orderRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new OrderActivity_Adapter(this);
-        //orderRecyclerView.setAdapter(new OrderActivity_Adapter(OrderActivity.this));
-        /*RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
-        orderRecyclerView.addItemDecoration(itemDecoration);*/
         InitializeAdapter(OrderActivity.this);
-//        recyclerviewdata();
-        //orderList();
+
     }
 
-    private void InitializeAdapter(Context context ) {
+    private void InitializeAdapter(Context context) {
         orderRecyclerView.setAdapter(new OrderActivity_Adapter(context));
 
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
         orderRecyclerView.addItemDecoration(itemDecoration);
     }
 
-    /*public static void InitializeAdapter(Context context) {
-        orderList.setLayoutManager(new GridLayoutManager(context, 2));
-        servicesRecyclerview.setAdapter(new ServicesAdapter(context));
-    }*/
-/*
-    @Override
-    protected void onResume() {
-        super.onResume();
-        ((OrderActivity_Adapter) mAdapter).setOnItemClickListener(new OrderActivity_Adapter.MyClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
-                startActivity(new Intent(OrderActivity.this, Select_order_activity.class));
-                finish();
-            }
-        });
-    }*/
-
-   /* private void recyclerviewdata() {
-        OrderObject orderObject;
-        orderObject = new OrderObject("SO-0217-0725", "R.K.DISTRIBUTERS", "Authorized");
-        orderList.add(orderObject);
-
-    }
-*/
-   /* private ArrayList<OrderObject> orderList() {
-        ArrayList results = new ArrayList<OrderObject>();
-
-        OrderObject orderObject = new OrderObject("SO-0217-0725", "R.K.DISTRIBUTERS", "Authorized");
-        orderList.add(orderObject);
-        return results;
-    }*/
 
 
     @Override
@@ -126,5 +95,11 @@ public class OrderActivity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+
+   /* public void click() {
+
+        startActivity(new Intent(OrderActivity.this, Select_order_activity.class));
+    }*/
 }
 
