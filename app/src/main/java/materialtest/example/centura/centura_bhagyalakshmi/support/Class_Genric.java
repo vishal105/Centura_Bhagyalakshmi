@@ -14,7 +14,7 @@ public class Class_Genric {
 
     public static String generateUrl(String Url, ArrayList<KeyValuePair> params) {
         if (params.size() > 0) {
-            Url += "?";
+            Url += "&";
             for (KeyValuePair data : params) {
                 if (data.getKey().trim().length() > 0)
                     Url += data.getKey() + "=" + data.getValue() + "&&";

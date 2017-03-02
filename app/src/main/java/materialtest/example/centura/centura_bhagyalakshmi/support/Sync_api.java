@@ -50,7 +50,7 @@ import static materialtest.example.centura.centura_bhagyalakshmi.login.LoginActi
  * Created by VISHAL on 2/27/2017.
  */
 
-public class All_api {
+public class Sync_api {
     static SharedPreferences sharedPreferences;
     static int mStatusCode = 0;
     static Gson gson;
@@ -59,8 +59,8 @@ public class All_api {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
         ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
-        params.add(new KeyValuePair("UserName", username.getText().toString().trim()));
-        params.add(new KeyValuePair("Password", password.getText().toString().trim()));
+        params.add(new KeyValuePair("username", username.getText().toString().trim()));
+        params.add(new KeyValuePair("password", password.getText().toString().trim()));
         //String LOGIN_URL = URL + "Login/" + "?UserName=" + username + "&&Password=" + password;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Login, params),
                 new Response.Listener<String>() {
@@ -148,7 +148,7 @@ public class All_api {
                         switch (mStatusCode) {
                             case 200:
                                 Toast.makeText(context, "Password Updated", Toast.LENGTH_SHORT).show();
-                                context.startActivity(new Intent(context,LoginActivity.class));
+                                context.startActivity(new Intent(context, LoginActivity.class));
                                 break;
                         }
                     }
@@ -171,12 +171,12 @@ public class All_api {
                 }
             }
         }) {
-            @Override
+            /*@Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Token",sharedPreferences.getString(LoginActivity.Sp_Token,""));
                 return params;
-            }
+            }*/
 
 
             @Override
@@ -192,77 +192,77 @@ public class All_api {
     }
 
 
-    public static void Orderapi(final Context context){
+    public static void Orderapi(final Context context) {
         sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
-            RequestQueue queue = Volley.newRequestQueue(context);
-            ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
-//            params.add(new KeyValuePair("name", Class_ModelDB.getCurrentuserModel().getName()));
-            StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Order, params), new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    if (response != null) {
-                        switch (mStatusCode) {
-                            case 200:
-                                try {
-                                    gson = new Gson();
-                                    JSONArray jsonObject = new JSONArray(response);
-                                    gson = new Gson();
-                                    ArrayList<Order> orders = new ArrayList<Order>();
-                                    Type listType = new TypeToken<ArrayList<Order>>() {
-                                    }.getType();
-                                    orders = gson.fromJson(jsonObject.toString(), listType);
-                                    Class_ModelDB.setOrderList(orders);
-                                    context.startActivity(new Intent(context, OrderActivity.class));
-                                    //Order.LoadOrders = false;
-                                    break;
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                        }
-                    }
-                }
-
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-
-                        Toast.makeText(context, "Connection Error, Please check your internet connection", Toast.LENGTH_SHORT).show();
-
-                    } else {
-                        if (error != null && error.networkResponse != null) {
-                            mStatusCode = error.networkResponse.statusCode;
-                            switch (mStatusCode) {
-                                case 400:
-                                    Toast.makeText(context, "Invalid Token", Toast.LENGTH_SHORT).show();
-                                    break;
-                            }
-                        } else Toast.makeText(context, "Server Down", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                 }) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
+        params.add(new KeyValuePair("name", Class_ModelDB.getCurrentuserModel().getName()));
+        StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Order, params), new Response.Listener<String>() {
             @Override
+            public void onResponse(String response) {
+                if (response != null) {
+                    switch (mStatusCode) {
+                        case 200:
+                            try {
+                                gson = new Gson();
+                                JSONArray jsonObject = new JSONArray(response);
+                                gson = new Gson();
+                                ArrayList<Order> orders = new ArrayList<Order>();
+                                Type listType = new TypeToken<ArrayList<Order>>() {
+                                }.getType();
+                                orders = gson.fromJson(jsonObject.toString(), listType);
+                                Class_ModelDB.setOrderList(orders);
+                                context.startActivity(new Intent(context, OrderActivity.class));
+                                //Order.LoadOrders = false;
+                                break;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                    }
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(context, "Connection Error, Please check your internet connection", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    if (error != null && error.networkResponse != null) {
+                        mStatusCode = error.networkResponse.statusCode;
+                        switch (mStatusCode) {
+                            case 400:
+                                Toast.makeText(context, "Invalid Token", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    } else Toast.makeText(context, "Server Down", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }) {
+          /*  @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Token", sharedPreferences.getString(LoginActivity.Sp_Token,""));
                 return params;
-            }
+            }*/
 
-                @Override
-                protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                    mStatusCode = response.statusCode;
-                    return super.parseNetworkResponse(response);
-                }
-            };
-            queue.add(postRequest);
-        }
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                mStatusCode = response.statusCode;
+                return super.parseNetworkResponse(response);
+            }
+        };
+        queue.add(postRequest);
+    }
 
     public static void Distributorapi(final Context context) {
 
         sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(context);
         ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
-        params.add(new KeyValuePair("name", "abc"));
+        params.add(new KeyValuePair("name", Class_ModelDB.getCurrentuserModel().getName()));
         StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.distributor, params), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -306,12 +306,12 @@ public class All_api {
                 }
             }
         }) {
-            @Override
+           /* @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Token", sharedPreferences.getString(LoginActivity.Sp_Token,""));
                 return params;
-            }
+            }*/
 
             @Override
             protected Response<String> parseNetworkResponse(NetworkResponse response) {

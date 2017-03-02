@@ -1,12 +1,7 @@
 package materialtest.example.centura.centura_bhagyalakshmi.changepassword;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -15,29 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.NoConnectionError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
-import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
-import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
-import materialtest.example.centura.centura_bhagyalakshmi.support.All_api;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Sync_api;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -77,7 +52,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     if (new_password_et.getText().toString().trim().length() >= 1) {
                         if (confirm_password_et.getText().toString().trim().length() >= 1) {
                             if (new_password_et.getText().toString().trim().matches(confirm_password_et.getText().toString().trim())) {
-                                All_api.changepasswordApi(ChangePasswordActivity.this, old_password_et, new_password_et);
+                                Sync_api.changepasswordApi(ChangePasswordActivity.this, old_password_et, new_password_et);
                             } else {
                                 Toast.makeText(ChangePasswordActivity.this, "Password Didn't Match", Toast.LENGTH_SHORT).show();
                             }

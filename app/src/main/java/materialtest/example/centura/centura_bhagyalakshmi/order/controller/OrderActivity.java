@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,10 +19,8 @@ import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
-import materialtest.example.centura.centura_bhagyalakshmi.models.OrderObject;
 import materialtest.example.centura.centura_bhagyalakshmi.order.Adapter.OrderActivity_Adapter;
-import materialtest.example.centura.centura_bhagyalakshmi.support.All_api;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Sync_api;
 
 public class OrderActivity extends AppCompatActivity {
     private RecyclerView orderRecyclerView;
@@ -48,7 +43,7 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                All_api.Distributorapi(OrderActivity.this);
+                Sync_api.Distributorapi(OrderActivity.this);
             }
         });
 

@@ -1,41 +1,17 @@
 package materialtest.example.centura.centura_bhagyalakshmi.login;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.NoConnectionError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
 import materialtest.example.centura.centura_bhagyalakshmi.R;
-import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
-import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
-import materialtest.example.centura.centura_bhagyalakshmi.support.All_api;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
-import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Urls;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Sync_api;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     Button bt_login;
@@ -71,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         if (et_username.getText().toString().trim().length() >= 1) {
             if (et_password.getText().toString().trim().length() >= 1) {
-                All_api.loginapi(LoginActivity.this,et_username,et_password);
+                Sync_api.loginapi(LoginActivity.this,et_username,et_password);
             } else {
                 et_password.setError("Please enter Password");
             }
