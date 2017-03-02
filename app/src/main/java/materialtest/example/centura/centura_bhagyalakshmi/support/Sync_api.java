@@ -319,6 +319,9 @@ public class Sync_api {
                 return super.parseNetworkResponse(response);
             }
         };
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(500000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(postRequest);
     }
 }

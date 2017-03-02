@@ -39,6 +39,7 @@ public class OrderActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fb_addorder = (FloatingActionButton) findViewById(R.id.fb_addorder);
+        fb_addorder.setVisibility(View.VISIBLE);
         fb_addorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
