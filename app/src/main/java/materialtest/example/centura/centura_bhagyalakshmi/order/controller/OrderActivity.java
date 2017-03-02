@@ -47,8 +47,8 @@ public class OrderActivity extends AppCompatActivity {
         fb_addorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                All_api.Orderapi(OrderActivity.this);
-                startActivity(new Intent(OrderActivity.this, DistrubutorSearchActivity.class));
+
+                All_api.Distributorapi(OrderActivity.this);
             }
         });
 

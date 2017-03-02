@@ -12,9 +12,13 @@ import java.util.ArrayList;
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 import materialtest.example.centura.centura_bhagyalakshmi.models.distributor;
+import materialtest.example.centura.centura_bhagyalakshmi.order.Adapter.Distributor_Adapter;
 
 public class DistrubutorSearchActivity extends AppCompatActivity {
     public static RecyclerView distributor_list;
+    Distributor_Adapter madapter;
+    private RecyclerView.LayoutManager mlayoutmanager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +29,11 @@ public class DistrubutorSearchActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         distributor_list = (RecyclerView) findViewById(R.id.rv_distributor_list);
-        distributor_list.setLayoutManager(new LinearLayoutManager(DistrubutorSearchActivity.this));
-        ArrayList<Order> tempRoleList=new ArrayList<Order>();
+        distributor_list.setHasFixedSize(true);
+        mlayoutmanager = new LinearLayoutManager(this);
+        distributor_list.setLayoutManager(mlayoutmanager);
+        madapter = new Distributor_Adapter(this);
+        distributor_list.setAdapter(madapter);
 
 
     }

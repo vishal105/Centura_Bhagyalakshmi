@@ -42,8 +42,8 @@ public class OrderActivity_Adapter  extends RecyclerView.Adapter<OrderActivity_A
             tv_order_id= (TextView) itemView.findViewById(R.id.tv_order_id);
             tv_order_name= (TextView) itemView.findViewById(R.id.tv_order_name);
             tv_order_status= (TextView) itemView.findViewById(R.id.tv_order_status);
-            itemView.setOnClickListener(this);
 
+            itemView.setOnClickListener(this);
         }
 
         @Override

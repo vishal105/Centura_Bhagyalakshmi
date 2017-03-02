@@ -37,6 +37,9 @@ import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
+import materialtest.example.centura.centura_bhagyalakshmi.models.distributor;
+import materialtest.example.centura.centura_bhagyalakshmi.order.controller.AddOrderActivity;
+import materialtest.example.centura.centura_bhagyalakshmi.order.controller.DistrubutorSearchActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.order.controller.OrderActivity;
 
 import static materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity.MyPref;
@@ -202,10 +205,11 @@ public class All_api {
                             case 200:
                                 try {
                                     gson = new Gson();
+                                    JSONArray jsonObject = new JSONArray(response);
+                                    gson = new Gson();
                                     ArrayList<Order> orders = new ArrayList<Order>();
                                     Type listType = new TypeToken<ArrayList<Order>>() {
                                     }.getType();
-                                    JSONArray jsonObject = new JSONArray(response);
                                     orders = gson.fromJson(jsonObject.toString(), listType);
                                     Class_ModelDB.setOrderList(orders);
                                     context.startActivity(new Intent(context, OrderActivity.class));
@@ -253,7 +257,71 @@ public class All_api {
             queue.add(postRequest);
         }
 
+    public static void Distributorapi(final Context context) {
+
+        sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
+        params.add(new KeyValuePair("name", "abc"));
+        StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.distributor, params), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (response != null) {
+                    switch (mStatusCode) {
+                        case 200:
+                            try {
+                                gson = new Gson();
+                                ArrayList<distributor> distributors = new ArrayList<distributor>();
+                                Type listType = new TypeToken<ArrayList<distributor>>() {
+                                }.getType();
+                                JSONArray jsonObject = new JSONArray(response);
+                                distributors = gson.fromJson(jsonObject.toString(), listType);
+                                Class_ModelDB.setDistributormodel(distributors);
+                                context.startActivity(new Intent(context, DistrubutorSearchActivity.class));
+                                //Order.LoadOrders = false;
+                                break;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                    }
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+
+                    Toast.makeText(context, "Connection Error, Please check your internet connection", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    if (error != null && error.networkResponse != null) {
+                        mStatusCode = error.networkResponse.statusCode;
+                        switch (mStatusCode) {
+                            case 400:
+                                Toast.makeText(context, "Invalid Token", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    } else Toast.makeText(context, "Server Down", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Token", sharedPreferences.getString(LoginActivity.Sp_Token,""));
+                return params;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                mStatusCode = response.statusCode;
+                return super.parseNetworkResponse(response);
+            }
+        };
+        queue.add(postRequest);
     }
+}
 
 
 

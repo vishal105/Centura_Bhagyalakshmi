@@ -4,11 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text1"
-        android:padding="@dimen/activity_horizontal_margin" />
+        android:padding="@dimen/dimen_10dp"
+        android:id="@+id/tv_distributor_item"
+        android:text="no Distributor"
+        android:textSize="@dimen/dimen_14dp"
+        />
 
 </LinearLayout>
