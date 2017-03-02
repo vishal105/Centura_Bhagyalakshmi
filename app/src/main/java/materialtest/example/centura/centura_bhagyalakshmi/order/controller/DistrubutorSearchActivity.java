@@ -1,11 +1,13 @@
 package materialtest.example.centura.centura_bhagyalakshmi.order.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,18 @@ public class DistrubutorSearchActivity extends AppCompatActivity {
         distributor_list.setLayoutManager(mlayoutmanager);
         madapter = new Distributor_Adapter(this);
         distributor_list.setAdapter(madapter);
+
+        distributor_list.addOnItemTouchListener(new RecyclerItemClickListener(this, distributor_list, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                startActivity(new Intent(DistrubutorSearchActivity.this,AddOrderActivity.class));
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+        }));
 
 
     }

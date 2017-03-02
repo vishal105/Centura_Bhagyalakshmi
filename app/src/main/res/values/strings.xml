@@ -22,4 +22,13 @@
     <string name="order_total">Total:</string>
     <string name="addandnew">SAVE AND NEW</string>
     <string name="quantity">Quantity</string>
+
+    <string name="category">Category</string>
+    <string name="select_product">Select Product</string>
+    <string name="units">Units</string>
+    <string name="price">Price</string>
+    <string name="tax">Tax</string>
+    <string name="amount">Amount</string>
+    <string name="save_button_title">SAVE</string>
+
 </resources>
