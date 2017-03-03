@@ -324,6 +324,13 @@ public class Sync_api {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(postRequest);
     }
+
+
+    public static void productapi(final Context context) {
+
+    }
+
+
 }
 
 

@@ -4,15 +4,23 @@ package materialtest.example.centura.centura_bhagyalakshmi.models;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-/**
- * Created by Centura User1 on 07-12-2016.
- */
+
 
 public class Order {
     private String Id;
+    private ArrayList<OrderProduct> Products;
     private OrderRole User;
     private OrderRole Client;
     private Double TotalAmount;
+
+    public ArrayList<OrderProduct> getProducts() {
+        return Products;
+    }
+
+    public void setProducts(ArrayList<OrderProduct> products) {
+        Products = products;
+    }
+
     private String Status;
     private String OrderNumber;
     private String OrderDate;

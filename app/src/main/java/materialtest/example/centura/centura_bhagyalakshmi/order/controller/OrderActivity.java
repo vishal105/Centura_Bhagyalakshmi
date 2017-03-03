@@ -49,7 +49,7 @@ public class OrderActivity extends AppCompatActivity {
         });
 
         orderRecyclerView = (RecyclerView) findViewById(R.id.rv_order);
-        orderRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, orderRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+      /*  orderRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, orderRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         startActivity(new Intent(OrderActivity.this, Select_order_activity.class));
                     }
@@ -58,7 +58,7 @@ public class OrderActivity extends AppCompatActivity {
                         Toast.makeText(OrderActivity.this, "Click once that is more than enough", Toast.LENGTH_SHORT).show();
                     }
                 })
-        );
+        );*/
 
         orderRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);

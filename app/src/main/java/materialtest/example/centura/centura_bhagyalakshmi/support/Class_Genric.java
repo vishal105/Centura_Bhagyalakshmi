@@ -2,9 +2,11 @@ package materialtest.example.centura.centura_bhagyalakshmi.support;
 
 import com.android.volley.toolbox.StringRequest;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
+import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 
 /**
  * Created by Basavaraju on 2/22/2017.
@@ -24,5 +26,15 @@ public class Class_Genric {
         return Url;
     }
 
+
+    public static String getDateTime(Order order) {
+        order.getOrderDate();
+        if (order.getOrderNumber().toLowerCase().contains(("Offline").toLowerCase())) {
+            return order.getOrderDate();
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            return sdf.format(new java.util.Date(Long.parseLong((order.getOrderDate())) * 1000));
+        }
+    }
 
 }

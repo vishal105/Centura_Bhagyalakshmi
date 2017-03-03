@@ -40,7 +40,7 @@
             android:id="@+id/textView3" />
 
         <TextView
-            android:id="@+id/amount"
+            android:id="@+id/tv_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -56,58 +56,58 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/color_400"
             android:orientation="horizontal"
-            android:weightSum="4"
-            android:background="@color/color_400">
+            android:weightSum="4">
 
 
             <TextView
                 android:id="@+id/odtv"
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dimen_10dp"
+                android:layout_weight="1"
                 android:paddingBottom="@dimen/dimen_10dp"
                 android:paddingLeft="@dimen/dimen_10dp"
+                android:paddingTop="@dimen/dimen_10dp"
                 android:text="Order Date:"
-                android:layout_weight="1" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/et_date"
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="@dimen/dimen_10dp" />
+                android:padding="@dimen/dimen_10dp"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/odtv1"
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingTop="@dimen/dimen_10dp"
                 android:paddingBottom="@dimen/dimen_10dp"
-                android:text="Order No:" />
+                android:paddingTop="@dimen/dimen_10dp"
+                android:text="Order No:"
+                android:textColor="@color/white" />
 
 
             <TextView
                 android:id="@+id/et_num"
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="@dimen/dimen_10dp" />
+                android:padding="@dimen/dimen_10dp"
+                android:textColor="@color/white" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/color_400"
             android:orientation="horizontal"
-            android:weightSum="4"
-            android:background="@color/color_400">
+            android:weightSum="4">
 
 
             <TextView
@@ -115,42 +115,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingTop="@dimen/dimen_10dp"
+                android:padding="@dimen/dimen_10dp"
                 android:paddingBottom="@dimen/dimen_10dp"
                 android:paddingLeft="@dimen/dimen_10dp"
-                android:padding="@dimen/dimen_10dp"
+                android:paddingTop="@dimen/dimen_10dp"
                 android:text="Placed By:"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tv_placed_by"
                 android:layout_width="match_parent"
-                android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:padding="@dimen/dimen_10dp" />
+                android:padding="@dimen/dimen_10dp"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/tv_distributor_show"
                 android:layout_width="match_parent"
-                android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingTop="@dimen/dimen_10dp"
                 android:paddingBottom="@dimen/dimen_10dp"
-                android:text="Distributor:" />
+                android:paddingTop="@dimen/dimen_10dp"
+                android:text="Distributor:"
+                android:textColor="@color/white" />
 
 
             <TextView
                 android:id="@+id/tv_distributor"
-                android:textColor="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/white" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -173,8 +172,8 @@
                     android:layout_height="wrap_content"
                     android:background="@color/grey"
                     android:padding="10dp"
-                    android:textColor="@color/color_400"
-                    android:text="Product/Description" />
+                    android:text="Product/Description"
+                    android:textColor="@color/color_400" />
 
                 <TextView
                     android:id="@+id/qty"
@@ -182,23 +181,23 @@
                     android:layout_height="wrap_content"
                     android:background="@color/grey"
                     android:padding="10dp"
-                    android:textColor="@color/color_400"
-                    android:text="Qty/Units" />
+                    android:text="Qty/Units"
+                    android:textColor="@color/color_400" />
 
                 <TextView
                     android:id="@+id/prtv2"
                     android:layout_width="166dp"
                     android:layout_height="wrap_content"
                     android:background="@color/grey"
-                    android:textColor="@color/color_400"
                     android:padding="10dp"
-                    android:text="Price" />
+                    android:text="Price"
+                    android:textColor="@color/color_400" />
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/select_orders"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="3dp"
                 android:padding="6dp">
@@ -207,8 +206,6 @@
 
 
         </LinearLayout>
-
-
 
 
     </LinearLayout>

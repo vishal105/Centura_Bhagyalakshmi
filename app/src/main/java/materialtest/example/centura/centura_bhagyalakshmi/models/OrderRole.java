@@ -7,13 +7,17 @@ public class OrderRole {
     private String Id;
     private String Name;
     private String Address;
-    private String Usertype;
+    private String UserType;
+    private String Employee;
+
+
 
     public OrderRole() {
         Id = "";
         Name = "";
+        Employee="";
         Address = "";
-        Usertype = "";
+        UserType = "";
     }
 
     public String getId() {
@@ -41,10 +45,17 @@ public class OrderRole {
     }
 
     public String getUsertype() {
-        return Usertype;
+        return UserType;
     }
 
     public void setUsertype(String usertype) {
-        Usertype = usertype;
+        UserType = usertype;
+    }
+    public String getEmployee() {
+        return Employee;
+    }
+
+    public void setEmployee(String employee) {
+        Employee = employee;
     }
 }

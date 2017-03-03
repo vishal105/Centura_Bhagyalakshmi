@@ -22,5 +22,7 @@
     <dimen name="dimen_30dp">30dp</dimen>
     <dimen name="dimen_5dp">5dp</dimen>
     <dimen name="dimen_14dp">14dp</dimen>
+    <dimen name="textsize_10sp">10sp</dimen>
+    <dimen name="textsize_16sp">16sp</dimen>
 
 </resources>
