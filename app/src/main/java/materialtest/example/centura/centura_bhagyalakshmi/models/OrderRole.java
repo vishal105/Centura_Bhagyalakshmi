@@ -7,7 +7,7 @@ public class OrderRole {
     private String Id;
     private String Name;
     private String Address;
-    private String UserType;
+    private String Usertype;
     private String Employee;
 
 
@@ -17,7 +17,7 @@ public class OrderRole {
         Name = "";
         Employee="";
         Address = "";
-        UserType = "";
+        Usertype = "";
     }
 
     public String getId() {
@@ -45,11 +45,11 @@ public class OrderRole {
     }
 
     public String getUsertype() {
-        return UserType;
+        return Usertype;
     }
 
     public void setUsertype(String usertype) {
-        UserType = usertype;
+        Usertype = usertype;
     }
     public String getEmployee() {
         return Employee;

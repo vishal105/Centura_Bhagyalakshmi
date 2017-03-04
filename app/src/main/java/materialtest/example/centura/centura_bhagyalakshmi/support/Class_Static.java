@@ -10,6 +10,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.models.Product;
  */
 
 public class Class_Static {
-    public static ArrayList<Product> tempOrderingProduct=new ArrayList<Product>();
+    public static ArrayList<Product> tempOrderingProduct=new ArrayList<>();
+
     public static Order OrdredProducts=new Order();
 }

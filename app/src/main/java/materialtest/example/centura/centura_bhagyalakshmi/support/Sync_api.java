@@ -37,6 +37,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.models.CurrentUser;
 import materialtest.example.centura.centura_bhagyalakshmi.models.KeyValuePair;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
+import materialtest.example.centura.centura_bhagyalakshmi.models.Product;
 import materialtest.example.centura.centura_bhagyalakshmi.models.distributor;
 import materialtest.example.centura.centura_bhagyalakshmi.order.controller.AddOrderActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.order.controller.DistrubutorSearchActivity;
@@ -44,6 +45,7 @@ import materialtest.example.centura.centura_bhagyalakshmi.order.controller.Order
 
 import static materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity.MyPref;
 import static materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity.Sp_Status;
+import static materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity.Sp_User;
 import static materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity.Sp_Token;
 
 /**
@@ -77,7 +79,7 @@ public class Sync_api {
                                     context.startActivity(new Intent(context, DashBoardActivity.class));
                                     Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show();
                                     editor.putString(Sp_Status, "LoggedIn");
-                                    editor.putString(Sp_Token, jsonObject.optString("Token").toString());
+                                    editor.putString(Sp_User, jsonObject.optString("Name").toString());
                                     editor.apply();
                                     editor.commit();
 
@@ -196,7 +198,7 @@ public class Sync_api {
         sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(context);
         ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
-        params.add(new KeyValuePair("name", Class_ModelDB.getCurrentuserModel().getName()));
+        params.add(new KeyValuePair("name", sharedPreferences.getString(LoginActivity.Sp_User,"")));
         StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Order, params), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -262,7 +264,7 @@ public class Sync_api {
         sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
         RequestQueue queue = Volley.newRequestQueue(context);
         ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
-        params.add(new KeyValuePair("name", Class_ModelDB.getCurrentuserModel().getName()));
+        params.add(new KeyValuePair("name", sharedPreferences.getString(LoginActivity.Sp_User,"")));
         StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.distributor, params), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -326,11 +328,112 @@ public class Sync_api {
     }
 
 
-    public static void productapi(final Context context) {
+    public static void ProductApi(final Context context, String id, String name) {
+        //GroupsApi(context);
+        //CatagoryApi(context);
 
+        /*String s = "2016-12-06T11:29:26";
+        if (s.contains("T")) {
+            s = s.replace("T", "");
+        }*/
+        RequestQueue queue = Volley.newRequestQueue(context);
+        ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
+        params.add(new KeyValuePair("Distributorid", id));
+        params.add(new KeyValuePair("Category", name));
+
+
+        StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Product1, params), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+                switch (mStatusCode) {
+                    case 200:
+                        try {
+                            gson = new Gson();
+                            ArrayList<Product> model = new ArrayList<Product>();
+                            Type listType = new TypeToken<ArrayList<Product>>() {
+                            }.getType();
+                            JSONArray jsonArray = new JSONArray(response);
+                            model = gson.fromJson(jsonArray.toString(), listType);
+                           /* dbHelper.loadProduct();
+
+
+                            ArrayList<Product> NewProductsList = new ArrayList<Product>();
+
+                            for (Product newprod : model) {
+                                boolean matched = false;
+                                for (int i = 0; i < Class_ModelDB.getProductList().size(); i++) {
+                                    if (newprod.getId().matches(Class_ModelDB.getProductList().get(i).getId())) {
+                                        matched = true;
+                                        Class_ModelDB.getProductList().remove(Class_ModelDB.getProductList().get(i));
+                                        Class_ModelDB.getProductList().add(i, newprod);
+                                        break;
+                                    }
+                                }
+                                if (!matched)
+                                    NewProductsList.add(newprod);
+                            }
+                            ArrayList<Product> FinalProductList = new ArrayList<Product>();
+                            FinalProductList = (ArrayList<Product>) Class_ModelDB.getProductList().clone();
+                            for (Product newproduct : NewProductsList) {
+                                FinalProductList.add(newproduct);
+                            }*/
+                            //Class_ModelDB.setProductList(model);
+
+                           /* String date = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+                            sharedPreferences = context.getSharedPreferences(MyPref, context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(Class_Genric.Sp_SyncDate, date);
+                            editor.commit();*/
+
+
+                            /*Class_Static.timestamplist = new ArrayList<BigInteger>();
+                            for (int j = 0; j < Class_ModelDB.getProductList().size(); j++)
+                                Class_Static.timestamplist.add(Class_ModelDB.getProductList().get(j).getTimeStamp());
+                            if(Class_Static.timestamplist.size()>0)
+                            Class_Genric.setTimeStamp(Class_Genric.Sp_ProductsTS, Collections.max(Class_Static.timestamplist), context);*/
+
+                            ((Activity) context).finish();
+
+
+                            break;
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                    if (error != null && error.networkResponse != null) {
+                        mStatusCode = error.networkResponse.statusCode;
+                        switch (mStatusCode) {
+                            case 400:
+                                Toast.makeText(context, "Invalid Token", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
+                    } else Toast.makeText(context, "Server Down", Toast.LENGTH_SHORT).show();
+                }
+
+        }) {
+           /* @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Token", Class_ModelDB.getCurrentuserModel().getToken().toString());
+                return params;
+            }*/
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                mStatusCode = response.statusCode;
+                return super.parseNetworkResponse(response);
+            }
+        };
+
+        queue.add(postRequest);
     }
-
-
 }
 
 

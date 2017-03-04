@@ -43,9 +43,9 @@ public class Select_order_activity extends AppCompatActivity {
     private void InitializeAdapter() {
         customername.setText(Class_Static.OrdredProducts.getClient().getName());
         placedby.setText(Class_Static.OrdredProducts.getUser().getEmployee());
-//        orderdate.setText(Class_Genric.getDateTime(Class_Static.OrdredProducts));
+        orderdate.setText(Class_Genric.getDateTime(Class_Static.OrdredProducts));
         ordernumber.setText(Class_Static.OrdredProducts.getOrderNumber());
-            recyclerView.setAdapter(new Select_Order_Adapter(Select_order_activity.this,Class_Static.tempOrderingProduct));
+        recyclerView.setAdapter(new Select_Order_Adapter(Select_order_activity.this));
     }
 
     @Override

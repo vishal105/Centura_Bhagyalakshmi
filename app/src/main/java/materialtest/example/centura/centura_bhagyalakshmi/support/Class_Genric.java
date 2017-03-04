@@ -33,8 +33,12 @@ public class Class_Genric {
             return order.getOrderDate();
         } else {
             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-            return sdf.format(new java.util.Date(Long.parseLong((order.getOrderDate())) * 1000));
+            return null;
+                    //sdf.format(new java.util.Date(Long.parseLong((order.getOrderDate())) * 1000));
         }
+
+
     }
+
 
 }

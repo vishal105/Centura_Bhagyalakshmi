@@ -13,16 +13,16 @@
         <LinearLayout
             android:padding="@dimen/dimen_4dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
-            <TextView
+            <!--<TextView
                 android:id="@+id/admin_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textStyle="bold"
-                android:textSize="@dimen/textsize_16sp" />
+                android:textSize="@dimen/textsize_16sp" />-->
 
             <TextView
                 android:padding="@dimen/dimen_2dp"
@@ -62,7 +62,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:text=""
             android:textStyle="bold" />
     </LinearLayout>

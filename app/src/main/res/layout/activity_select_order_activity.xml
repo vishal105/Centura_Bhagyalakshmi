@@ -22,32 +22,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
-        android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:id="@+id/bottom_layout">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:text="@string/order_total"
-            android:padding="@dimen/dimen_10dp"
-            android:textSize="20dp"
-            android:id="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/tv_amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/dimen_10dp" />
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -168,7 +142,7 @@
 
                 <TextView
                     android:id="@+id/pdtv1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/grey"
                     android:padding="10dp"
@@ -177,7 +151,7 @@
 
                 <TextView
                     android:id="@+id/qty"
-                    android:layout_width="match_parent"
+                    android:layout_width="132dp"
                     android:layout_height="wrap_content"
                     android:background="@color/grey"
                     android:padding="10dp"
@@ -186,7 +160,7 @@
 
                 <TextView
                     android:id="@+id/prtv2"
-                    android:layout_width="166dp"
+                    android:layout_width="133dp"
                     android:layout_height="wrap_content"
                     android:background="@color/grey"
                     android:padding="10dp"
@@ -208,7 +182,36 @@
         </LinearLayout>
 
 
+
     </LinearLayout>
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/bottom_layout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="@string/order_total"
+            android:padding="@dimen/dimen_10dp"
+            android:textSize="20dp"
+            android:id="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:padding="@dimen/dimen_10dp" />
+    </LinearLayout>
+
+
 
 
 </android.support.design.widget.CoordinatorLayout>

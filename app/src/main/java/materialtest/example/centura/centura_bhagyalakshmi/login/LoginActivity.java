@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String Sp_Token="Token" ;
     String URL = "http://192.168.0.144:81/api/BhagyaLakshmi/";
     public static final String Sp_Status = "Status";
+    public static final String Sp_User = "username";
     public static final String MyPref = "MyPref";
 
 

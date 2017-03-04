@@ -11,8 +11,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
+import materialtest.example.centura.centura_bhagyalakshmi.models.OrderProduct;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Product;
 import materialtest.example.centura.centura_bhagyalakshmi.order.controller.Select_order_activity;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Genric;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Static;
 
 /**
@@ -21,16 +24,16 @@ import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Static;
 
 public class Select_Order_Adapter extends RecyclerView.Adapter<Select_Order_Adapter.ViewHolder> {
     Context mContext;
-    ArrayList<Product> data;
+    ArrayList<OrderProduct> data;
     Double amount = 0.0;
 
-    public Select_Order_Adapter(Context context, ArrayList<Product> model) {
+    public Select_Order_Adapter(Context context) {
         this.mContext = context;
-        this.data = model;
+        data = Class_Static.OrdredProducts.getProducts();
        /* for (Product prod : data) {
             amount += prod.getAmount();
         }*/
-        Select_order_activity.total.setText("Total : " + String.format("%.2f", Class_Static.OrdredProducts.getTotalAmount()) + "");
+        //Select_order_activity.total.setText("Total : " + String.format("%.2f", Class_Static.OrdredProducts.getTotalAmount()) + "");
 
     }
 
@@ -43,14 +46,15 @@ public class Select_Order_Adapter extends RecyclerView.Adapter<Select_Order_Adap
 
     @Override
     public void onBindViewHolder(Select_Order_Adapter.ViewHolder holder, int position) {
-        holder.category.setText(data.get(position).getCatagoryName());
+        /*holder.category.setText(data.get(position).getCatagoryName());
         holder.category.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         holder.category.setSelected(true);
-        holder.category.setSingleLine(true);
+        holder.category.setSingleLine(true);*/
         holder.description.setText(data.get(position).getDescription());
         holder.quantity.setText(data.get(position).getQuantity() + "");
         holder.unit.setText(data.get(position).getUnits());
         holder.price.setText(data.get(position).getPrice().toString());
+
 
     }
 
@@ -63,7 +67,7 @@ public class Select_Order_Adapter extends RecyclerView.Adapter<Select_Order_Adap
         TextView category, description, quantity, unit, price;
         public ViewHolder(View itemView) {
             super(itemView);
-            category = (TextView) itemView.findViewById(R.id.admin_category);
+            //category = (TextView) itemView.findViewById(R.id.admin_category);
             description = (TextView) itemView.findViewById(R.id.admin_description);
             quantity = (TextView) itemView.findViewById(R.id.admin_quantity);
             unit = (TextView) itemView.findViewById(R.id.admin_unit);
