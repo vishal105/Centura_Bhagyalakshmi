@@ -14,7 +14,7 @@
             android:padding="@dimen/dimen_4dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.21"
             android:orientation="vertical">
             <!--<TextView
                 android:id="@+id/admin_category"
@@ -61,7 +61,7 @@
             android:id="@+id/admin_price"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.78"
             android:gravity="left|center_vertical"
             android:text=""
             android:textStyle="bold" />
