@@ -1,7 +1,6 @@
 package materialtest.example.centura.centura_bhagyalakshmi.order.controller;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -9,27 +8,33 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 import materialtest.example.centura.centura_bhagyalakshmi.order.Adapter.OrderActivity_Adapter;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
+import materialtest.example.centura.centura_bhagyalakshmi.support.Class_Static;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Sync_api;
 
 public class OrderActivity extends AppCompatActivity {
     private RecyclerView orderRecyclerView;
-    LinearLayout orderedLayout, emptyOrders;
-    Button Test_Button;
     OrderActivity_Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static ArrayList<Order> orderList = new ArrayList<Order>();
+    LinearLayout orderedLayout,emptyOrders;
+    EditText orderSearch;
     FloatingActionButton fb_addorder;
+    static ArrayList<Order> LocalOrder=new ArrayList<Order>();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,10 @@ public class OrderActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        emptyOrders = (LinearLayout) findViewById(R.id.empty_active_orders);
+        orderedLayout = (LinearLayout) findViewById(R.id.active_ordered_layout);
+        orderSearch=(EditText)findViewById(R.id.order_search);
         fb_addorder = (FloatingActionButton) findViewById(R.id.fb_addorder);
         fb_addorder.setVisibility(View.VISIBLE);
         fb_addorder.setOnClickListener(new View.OnClickListener() {
@@ -49,30 +58,66 @@ public class OrderActivity extends AppCompatActivity {
         });
 
         orderRecyclerView = (RecyclerView) findViewById(R.id.rv_order);
-      /*  orderRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, orderRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        startActivity(new Intent(OrderActivity.this, Select_order_activity.class));
-                    }
-
-                    @Override public void onLongItemClick(View view, int position) {
-                        Toast.makeText(OrderActivity.this, "Click once that is more than enough", Toast.LENGTH_SHORT).show();
-                    }
-                })
-        );*/
-
         orderRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         orderRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new OrderActivity_Adapter(this);
+        mAdapter = new OrderActivity_Adapter(this, Class_ModelDB.getOrderList());
+        Functionality(OrderActivity.this);
         InitializeAdapter(OrderActivity.this);
 
     }
 
-    private void InitializeAdapter(Context context) {
-        orderRecyclerView.setAdapter(new OrderActivity_Adapter(context));
+    private void Functionality(final Context context) {
+        orderSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, LinearLayoutManager.HORIZONTAL);
-        orderRecyclerView.addItemDecoration(itemDecoration);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().matches("")){
+                    orderRecyclerView.setAdapter(new OrderActivity_Adapter(context, Class_ModelDB.getOrderList()));
+                }
+                else {
+                    fb_addorder.setVisibility(View.GONE);
+
+                    Class_Static.tempOrder=new ArrayList<Order>();
+                    for (Order temporder:LocalOrder) {
+                        Boolean matched=false;
+                        if(temporder.getOrderNumber().toLowerCase().contains(s.toString().toLowerCase()))
+                            matched=true;
+                        if(temporder.getClient().getName().toLowerCase().contains(s.toString().toLowerCase()))
+                            matched=true;
+                        if(temporder.getUser().getName().toLowerCase().contains(s.toString().toLowerCase()))
+                            matched=true;
+                        if (temporder.getStatus().toLowerCase().contains(s.toString().toLowerCase()))
+                            matched=true;
+                        if(matched)
+                            Class_Static.tempOrder.add(temporder);
+                    }
+                    orderRecyclerView.setAdapter(new OrderActivity_Adapter(context,Class_Static.tempOrder));
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private void InitializeAdapter(Context context) {
+        LocalOrder= (ArrayList<Order>) Class_ModelDB.getOrderList().clone();
+        if(Class_ModelDB.getOrderList().size()!=0){
+            orderRecyclerView.setAdapter(new OrderActivity_Adapter(context, Class_ModelDB.getOrderList()));
+        }else {
+
+
+        }
+
+
     }
 
 

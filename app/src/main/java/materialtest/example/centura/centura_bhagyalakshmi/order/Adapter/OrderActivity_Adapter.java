@@ -28,9 +28,9 @@ public class OrderActivity_Adapter extends RecyclerView.Adapter<OrderActivity_Ad
     Context mcontext;
     ArrayList<Order> data;
 
-    public OrderActivity_Adapter(Context context) {
+    public OrderActivity_Adapter(Context context, ArrayList<Order> model) {
         this.mcontext = context;
-        mdataset = Class_ModelDB.getOrderList();
+        mdataset = model;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

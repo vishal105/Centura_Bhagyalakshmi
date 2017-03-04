@@ -1,5 +1,8 @@
 package materialtest.example.centura.centura_bhagyalakshmi.support;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+
 import com.android.volley.toolbox.StringRequest;
 
 import java.text.SimpleDateFormat;
@@ -13,6 +16,8 @@ import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
  */
 
 public class Class_Genric {
+    public static boolean progressAlive = false;
+    static ProgressDialog pDialog;
 
     public static String generateUrl(String Url, ArrayList<KeyValuePair> params) {
         if (params.size() > 0) {
@@ -40,4 +45,34 @@ public class Class_Genric {
     }
 
 
+    public static void ShowDialog(Context context, String message, Boolean flag) {
+        if (flag) {
+            if (progressAlive) {
+                try {
+                    pDialog.cancel();
+                } catch (Exception e) {
+                }
+                progressAlive = false;
+            }
+            {
+               /* pDialog=new Dialog(context);
+                pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                pDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                pDialog.setContentView(R.layout.customload);*/
+
+                pDialog = new ProgressDialog(context);
+                pDialog.setMessage(message);
+                if (message.contains("Loading"))
+                    pDialog.setCanceledOnTouchOutside(false);
+                progressAlive = true;
+                pDialog.show();
+            }
+        } else {
+            if (progressAlive) {
+                pDialog.dismiss();
+                pDialog.cancel();
+                progressAlive = false;
+            }
+        }
+    }
 }

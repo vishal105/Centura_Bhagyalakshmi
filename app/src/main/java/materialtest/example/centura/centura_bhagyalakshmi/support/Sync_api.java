@@ -64,10 +64,12 @@ public class Sync_api {
         params.add(new KeyValuePair("username", username.getText().toString().trim()));
         params.add(new KeyValuePair("password", password.getText().toString().trim()));
         //String LOGIN_URL = URL + "Login/" + "?UserName=" + username + "&&Password=" + password;
+        Class_Genric.ShowDialog(context,"Loading...",true);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Login, params),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Class_Genric.ShowDialog(context,"Loading...",false);
                         sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         switch (mStatusCode) {
@@ -97,6 +99,7 @@ public class Sync_api {
         {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Class_Genric.ShowDialog(context,"Loading...",false);
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                     if (error != null && error.networkResponse != null) {
                         mStatusCode = error.networkResponse.statusCode;
@@ -141,10 +144,12 @@ public class Sync_api {
         params.add(new KeyValuePair("NewPassword", newPassword.getText().toString().trim()));
 
         sharedPreferences = context.getSharedPreferences(MyPref, Context.MODE_PRIVATE);
+        Class_Genric.ShowDialog(context,"Loading...",true);
         StringRequest postrequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.ChangePassword, params),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Class_Genric.ShowDialog(context,"Loading...",false);
 
 
                         switch (mStatusCode) {
@@ -157,6 +162,7 @@ public class Sync_api {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Class_Genric.ShowDialog(context,"Loading...",false);
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
 
                     Toast.makeText(context, "Connection Error, Please check your internet connection", Toast.LENGTH_SHORT).show();
@@ -199,10 +205,12 @@ public class Sync_api {
         RequestQueue queue = Volley.newRequestQueue(context);
         ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
         params.add(new KeyValuePair("name", sharedPreferences.getString(LoginActivity.Sp_User,"")));
+        Class_Genric.ShowDialog(context, "Loading Orders.", true);
         StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Order, params), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response != null) {
+                    Class_Genric.ShowDialog(context, "Loading...", false);
                     switch (mStatusCode) {
                         case 200:
                             try {
@@ -227,6 +235,7 @@ public class Sync_api {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Class_Genric.ShowDialog(context,"Loading...",false);
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
 
                     Toast.makeText(context, "Connection Error, Please check your internet connection", Toast.LENGTH_SHORT).show();
@@ -265,9 +274,11 @@ public class Sync_api {
         RequestQueue queue = Volley.newRequestQueue(context);
         ArrayList<KeyValuePair> params = new ArrayList<KeyValuePair>();
         params.add(new KeyValuePair("name", sharedPreferences.getString(LoginActivity.Sp_User,"")));
+        Class_Genric.ShowDialog(context,"Loading",true);
         StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.distributor, params), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Class_Genric.ShowDialog(context,"Loading...",false);
                 if (response != null) {
                     switch (mStatusCode) {
                         case 200:
@@ -292,6 +303,7 @@ public class Sync_api {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Class_Genric.ShowDialog(context,"Loading...",false);
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
 
                     Toast.makeText(context, "Connection Error, Please check your internet connection", Toast.LENGTH_SHORT).show();
@@ -342,9 +354,11 @@ public class Sync_api {
         params.add(new KeyValuePair("Category", name));
 
 
+        Class_Genric.ShowDialog(context,"Loading...",true);
         StringRequest postRequest = new StringRequest(Request.Method.GET, Class_Genric.generateUrl(Class_Urls.Product1, params), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Class_Genric.ShowDialog(context,"Loading...",false);
 
 
                 switch (mStatusCode) {
@@ -406,6 +420,7 @@ public class Sync_api {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Class_Genric.ShowDialog(context,"Loading...",false);
 
                     if (error != null && error.networkResponse != null) {
                         mStatusCode = error.networkResponse.statusCode;
