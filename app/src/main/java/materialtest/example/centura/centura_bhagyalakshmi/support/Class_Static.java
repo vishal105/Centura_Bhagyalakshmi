@@ -14,4 +14,6 @@ public class Class_Static {
     public static ArrayList<Order> tempOrder=new ArrayList<Order>();
 
     public static Order OrdredProducts=new Order();
+    //public static ArrayList<Order> tempOrder=new ArrayList<Order>();
+
 }

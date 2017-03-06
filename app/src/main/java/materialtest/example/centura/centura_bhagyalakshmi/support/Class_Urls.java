@@ -14,5 +14,5 @@ public class Class_Urls {
     public static final String OrderId=Parent+"order/id";
     public static final String Product1=Parent+"FileToGetCat.php?type=Product";
     public static final String distributor=Parent+"FileToGetDetails.php?type=Distributor";
-    //https://github.com/sab99r/RecyclerView-LoadMore.git
+
 }

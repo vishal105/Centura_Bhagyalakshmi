@@ -21,7 +21,6 @@ public class DistrubutorSearchActivity extends AppCompatActivity {
     Distributor_Adapter madapter;
     private RecyclerView.LayoutManager mlayoutmanager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +28,6 @@ public class DistrubutorSearchActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         distributor_list = (RecyclerView) findViewById(R.id.rv_distributor_list);
         distributor_list.setHasFixedSize(true);
         mlayoutmanager = new LinearLayoutManager(this);
@@ -42,15 +40,13 @@ public class DistrubutorSearchActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 startActivity(new Intent(DistrubutorSearchActivity.this,AddOrderActivity.class));
             }
-
             @Override
             public void onLongItemClick(View view, int position) {
 
             }
         }));
-
-
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

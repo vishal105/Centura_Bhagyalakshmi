@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
+import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 import materialtest.example.centura.centura_bhagyalakshmi.order.Adapter.OrderActivity_Adapter;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Class_ModelDB;
@@ -32,9 +33,6 @@ public class OrderActivity extends AppCompatActivity {
     EditText orderSearch;
     FloatingActionButton fb_addorder;
     static ArrayList<Order> LocalOrder=new ArrayList<Order>();
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,6 +124,7 @@ public class OrderActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (item.getItemId() == android.R.id.home) {
+           // DashBoardActivity.navigationView.getMenu().getItem(0).setChecked(true);
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
@@ -135,6 +134,7 @@ public class OrderActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+
     }
 
 

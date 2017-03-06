@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import materialtest.example.centura.centura_bhagyalakshmi.R;
+import materialtest.example.centura.centura_bhagyalakshmi.dashboard.DashBoardActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.login.LoginActivity;
 import materialtest.example.centura.centura_bhagyalakshmi.support.Sync_api;
 
@@ -19,10 +20,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
     EditText old_password_et, new_password_et, confirm_password_et;
     Button cancel_button, save_button;
     public static SharedPreferences sharedPreferences;
-
-    static int mStatusCode = 0;
-
-    public String oldpassword, newpassword, confirmpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +35,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
         save_button = (Button) findViewById(R.id.save_button);
         onClicks();
         sharedPreferences = this.getSharedPreferences(LoginActivity.MyPref, MODE_PRIVATE);
-
-
     }
 
     public void onClicks() {
-
-
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +52,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         } else {
                             confirm_password_et.setError("This field required");
                         }
-
                     } else {
                         new_password_et.setError("This field required");
                     }
@@ -68,22 +60,20 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 }
             }
         });
-
         cancel_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
         if (item.getItemId() == android.R.id.home) {
+            //DashBoardActivity.navigationView.getMenu().getItem(0).setChecked(true);
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
@@ -91,8 +81,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         super.onBackPressed();
         finish();
+
     }
 
 
