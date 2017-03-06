@@ -22,9 +22,9 @@ public class Distributor_Adapter extends RecyclerView.Adapter<Distributor_Adapte
     public static ArrayList <distributor> data;
     Context mcontext;
 
-    public Distributor_Adapter(Context context) {
+    public Distributor_Adapter(Context context, ArrayList<distributor> distributormodel) {
         this.mcontext = context;
-        data = Class_ModelDB.getDistributormodel();
+        this.data = distributormodel;
     }
 
     @Override

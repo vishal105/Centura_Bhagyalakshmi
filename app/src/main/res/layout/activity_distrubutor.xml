@@ -41,7 +41,7 @@
 
 
                     <EditText
-                        android:id="@+id/order_search"
+                        android:id="@+id/order_search1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="15dp"

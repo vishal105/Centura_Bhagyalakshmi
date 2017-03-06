@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import materialtest.example.centura.centura_bhagyalakshmi.models.Order;
 import materialtest.example.centura.centura_bhagyalakshmi.models.Product;
+import materialtest.example.centura.centura_bhagyalakshmi.models.distributor;
 
 /**
  * Created by VISHAL on 3/3/2017.
@@ -11,9 +12,9 @@ import materialtest.example.centura.centura_bhagyalakshmi.models.Product;
 
 public class Class_Static {
     public static ArrayList<Product> tempOrderingProduct=new ArrayList<>();
-    public static ArrayList<Order> tempOrder=new ArrayList<Order>();
+    public static ArrayList<Order> tempOrder = new ArrayList<Order>();
+
 
     public static Order OrdredProducts=new Order();
-    //public static ArrayList<Order> tempOrder=new ArrayList<Order>();
-
+    public static ArrayList<distributor> tempdistributor = new ArrayList<distributor>();
 }

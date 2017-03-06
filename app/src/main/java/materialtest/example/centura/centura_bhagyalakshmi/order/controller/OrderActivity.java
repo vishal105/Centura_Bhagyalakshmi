@@ -76,6 +76,7 @@ public class OrderActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().matches("")){
                     orderRecyclerView.setAdapter(new OrderActivity_Adapter(context, Class_ModelDB.getOrderList()));
+                    fb_addorder.setVisibility(View.VISIBLE);
                 }
                 else {
                     fb_addorder.setVisibility(View.GONE);
@@ -87,8 +88,8 @@ public class OrderActivity extends AppCompatActivity {
                             matched=true;
                         if(temporder.getClient().getName().toLowerCase().contains(s.toString().toLowerCase()))
                             matched=true;
-                        if(temporder.getUser().getName().toLowerCase().contains(s.toString().toLowerCase()))
-                            matched=true;
+                       /* if(temporder.getUser().getName().toLowerCase().contains(s.toString().toLowerCase()))
+                            matched=true;*/
                         if (temporder.getStatus().toLowerCase().contains(s.toString().toLowerCase()))
                             matched=true;
                         if(matched)
